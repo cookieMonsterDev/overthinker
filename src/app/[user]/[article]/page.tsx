@@ -1,5 +1,5 @@
 'use client'
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 const str = `
 ### Preview Markdown
@@ -25,7 +25,7 @@ const Article = () => {
   return (
     <div>
       <h1>Article</h1>
-      <div data-color-mode="light">
+      <div className="wmde-markdown-var">
         <MarkdownPreview source={str} />
       </div>
     </div>
