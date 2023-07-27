@@ -1,6 +1,6 @@
 import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
 import { AuthResponse, UserID } from 'src/common/decorators';
-import { LocalGuard } from './guards';
+import { JwtGuard, LocalGuard } from './guards';
 import { Registerdto } from './dto/register.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -19,5 +19,11 @@ export class AuthController {
   @Post('login')
   signIn(@Body() _body: LoginDto, @AuthResponse() auth): Promise<any> {
     return auth;
+  }
+
+  @UseGuards(JwtGuard) 
+  @Post('refresh')
+  refresh(@UserID() userId): Promise<any> {
+    return this.authService.refreshToken(userId);
   }
 }

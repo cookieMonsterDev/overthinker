@@ -25,7 +25,7 @@ const Article = () => {
   return (
     <div>
       <h1>Article</h1>
-      <div className="wmde-markdown-var">
+      <div data-color-mode="light">
         <MarkdownPreview source={str} />
       </div>
     </div>
