@@ -1,3 +1,13 @@
-.container {
-  
+.overlay {
+  min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_blur {
+    backdrop-filter: blur(2px);
+  }
 }

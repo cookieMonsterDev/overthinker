@@ -3,10 +3,9 @@ import React from "react";
 import { NavBarProps } from "./NavBar.types";
 import styles from "./NavBar.module.scss";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { Search } from "../Search";
 import { useModal } from "@/context/ModalProvider";
-import { BlurOverlay } from "../BlurOverlay";
+import { LoginComponent } from "../Modals/Login/Login.component";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
   const modal = useModal();
@@ -19,18 +18,7 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
         </Link>
         <Search />
       </div>
-      <button
-        onClick={() =>
-          modal?.openModal(
-            <BlurOverlay>
-              <dialog open>
-                <h1>test Moadal</h1>
-                <button onClick={() => modal.closeModal()}>Close</button>
-              </dialog>
-            </BlurOverlay>
-          )
-        }
-      >
+      <button onClick={() => modal?.openModal(<LoginComponent />)}>
         Sign In
       </button>
     </nav>

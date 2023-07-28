@@ -17,7 +17,6 @@ export class IsUniqueEmailConstraint
 
   async validate(email: string) {
     if (!email) return true;
-    console.log(email)
     const user = await this.userModel.findOne({ email });
     return !user;
   }
