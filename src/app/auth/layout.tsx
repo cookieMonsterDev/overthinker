@@ -1,14 +1,15 @@
-import styles from './auth.module.scss'
+import styles from "./auth.module.scss";
 
 export default function AuthLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <body> 
-      <h1>sfoajesd;d</h1>
-      {children}
-    </body>
-  )
+    <html lang="en">
+      <body suppressHydrationWarning={true} className={styles.container}>
+        {children}
+      </body>
+    </html>
+  );
 }

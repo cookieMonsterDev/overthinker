@@ -4,23 +4,17 @@ import { NavBarProps } from "./NavBar.types";
 import styles from "./NavBar.module.scss";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import cn from "classnames";
+import { Search } from "../Search";
 
-export const NavBarComponent: React.FC<NavBarProps> = ({ display = true }) => {
-
-  const nav = cn(styles.container, {
-    [styles[`container_no_display`]]: !display,
-  });
+export const NavBarComponent: React.FC<NavBarProps> = () => {
 
   return (
-    <nav className={nav}>
+    <nav className={styles.container}>
       <div className={styles.subcontainer_left}>
         <Link href="/" className={styles.title}>
           OverThinker
         </Link>
-        <div>
-          <input />
-        </div>
+        <Search />
       </div>
       <button onClick={() => signIn()}>Sign In</button>
     </nav>

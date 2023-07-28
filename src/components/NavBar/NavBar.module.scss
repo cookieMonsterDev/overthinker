@@ -4,11 +4,6 @@
   padding: 0 0.5rem;
   display: flex;
   justify-content: space-between; 
-
-  &_no_display {
-    display: none;
-    visibility: hidden;
-  }
 }
 
 .subcontainer_left {
@@ -20,6 +15,7 @@
   font-family: 'Chomsky', sans-serif;
   font-size: 2.5rem;
   font-weight: 500;
+  margin-right: 0.5rem;
 }
 
 //#TODO font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
