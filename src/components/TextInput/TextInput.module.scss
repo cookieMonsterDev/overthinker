@@ -1,0 +1,117 @@
+.label {
+  user-select: none;
+  color: var(--ultra-light-gray);
+  background: var(--white);
+  position: absolute;
+  padding: 0 3px;
+  margin: 0 8px;
+  top: 26%;
+  transition: all 150ms ease-out;
+
+  > p {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+
+.icon {
+  margin: auto;
+  padding: 0 19px;
+}
+
+.helperText {
+  color: var(--ultra-light-gray);
+  position: absolute;
+  bottom: -20px;
+  font-size: 12px;
+  line-height: 16px;
+
+  > p {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+
+.input {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  width: 328px;
+  padding: 1px;
+  color: var(--black);
+  border: 1px solid var(--light-gray);
+  background: var(--white);
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 24px;
+  transition: all 100ms;
+
+  > input {
+    box-sizing: border-box;
+    z-index: 100;
+    background: transparent;
+    outline: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 12px 16px 12px 16px;
+    font-family: 'T-Star Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &_focus {
+    border: 2px solid var(--primary);
+
+    .label {
+      color: var(--primary);
+    }
+  }
+
+  &_active {
+    .label {
+      top: -10px;
+      margin: 0 16px;
+      > p {
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+  }
+
+  &_error {
+    border-color: var(--error);
+
+    .label {
+      color: var(--error);
+    }
+
+    .helperText {
+      color: var(--error);
+    }
+  }
+
+  &_diretion {
+    &_rtl {
+      direction: rtl;
+    }
+
+    &_ltr {
+      direction: ltr;
+    }
+  }
+
+  &_size {
+    &_default_L {
+      height: 56px;
+    }
+
+    &_default_M {
+      height: 40px;
+    }
+  }
+}

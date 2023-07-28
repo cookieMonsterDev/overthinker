@@ -1,1 +1,3 @@
-export interface NavBarProps {}
+export interface NavBarProps {
+  display?: boolean
+}

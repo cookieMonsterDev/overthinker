@@ -3,7 +3,12 @@
   height: 3.5rem;
   padding: 0 0.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
+
+  &_no_display {
+    display: none;
+    visibility: hidden;
+  }
 }
 
 .subcontainer_left {

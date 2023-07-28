@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import { NavBar } from "@/components/NavBar";
+import AuthProvider from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <NavBar />
-        {children}
+        <AuthProvider>
+          <NavBar/>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

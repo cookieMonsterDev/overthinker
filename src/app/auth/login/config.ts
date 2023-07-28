@@ -3,7 +3,7 @@ import {
   AT_LEAST_ONE_NUMBER,
   AT_LEAST_ONE_SPECIAL_CHARACTER,
   AT_LEAST_ONE_UPPER_CASE_LETTER,
-} from "@/app/common/validationRegexes";
+} from "@/common/validationRegexes";
 import * as yup from "yup";
 
 export const initialValues = {

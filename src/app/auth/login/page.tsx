@@ -4,6 +4,7 @@ import { initialValues, validationSchema } from "./config";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { TextInput } from "@/components/TextInput";
 
 const Login = () => {
   const router = useRouter();
@@ -25,14 +26,14 @@ const Login = () => {
     <div>
       <h1>Sign in to your account</h1>
       <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
-        <input
+        <TextInput
           placeholder="Email"
           name="email"
           id="email"
           value={formik.values.email}
           onChange={formik.handleChange}
         />
-        <input
+        <TextInput
           placeholder="password"
           name="password"
           id="password"
