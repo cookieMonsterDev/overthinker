@@ -3,6 +3,7 @@ import React from "react";
 import { NavBarProps } from "./NavBar.types";
 import styles from "./NavBar.module.scss";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export const NavBarComponent: React.FC<NavBarProps> = ({}) => {
   return (
@@ -13,6 +14,7 @@ export const NavBarComponent: React.FC<NavBarProps> = ({}) => {
           <input />
         </div>
       </div>
+      <button onClick={() => signIn()}>Sign In</button>
     </nav>
   );
 };
