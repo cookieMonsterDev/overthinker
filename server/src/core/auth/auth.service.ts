@@ -43,7 +43,7 @@ export class AuthService {
   async register({ password, ...rest }: Registerdto): Promise<any> {
     try {
       const passwordHash = await argon2.hash(password);
-
+      
       const user = await this.userModel.create({
         hash: passwordHash,
         ...rest,
@@ -56,7 +56,6 @@ export class AuthService {
 
       return { user, token };
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
@@ -64,7 +63,6 @@ export class AuthService {
   async refreshToken(userId: string): Promise<any> {
     try {
       const user = await this.userModel.findById(userId);
-
       const token = await this.generateToken({
         userId: user._id,
         role: user.role,

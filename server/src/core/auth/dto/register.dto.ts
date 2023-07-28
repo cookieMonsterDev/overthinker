@@ -11,10 +11,6 @@ import {
 import { UserRoles } from '../types/roles';
 
 export class Registerdto {
-  @IsOptional()
-  @IsString()
-  username: string;
-
   @IsNotEmpty()
   @IsString()
   @IsEmail()
@@ -43,13 +39,13 @@ export class Registerdto {
 
   @IsOptional()
   @IsString()
-  firstName: string = null;
+  firstName: string;
 
   @IsOptional()
   @IsString()
-  lastName: string = null;
+  lastName: string;
 
   @IsOptional()
   @IsEnum(UserRoles)
-  role: UserRoles = UserRoles.USER;
+  role: UserRoles;
 }

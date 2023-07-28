@@ -22,7 +22,7 @@ export class AuthController {
   }
 
   @UseGuards(JwtGuard) 
-  @Post('refresh')
+  @Get('refresh')
   refresh(@UserID() userId): Promise<any> {
     return this.authService.refreshToken(userId);
   }
