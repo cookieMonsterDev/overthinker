@@ -5,8 +5,9 @@ import styles from "./NavBar.module.scss";
 import Link from "next/link";
 import { Search } from "../Search";
 import { useModal } from "@/context/ModalProvider";
-import { LoginComponent } from "../Modals/Login/Login.component";
 import { Button } from "../Button";
+import { IconsEnum, SvgIcon } from "../SvgIcon";
+import { RegisterComponent } from "../Modals/Register/Register.component";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
   const modal = useModal();
@@ -20,11 +21,14 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
         <Search />
       </div>
       <div className={styles.subcontainer_right}>
-        <Link href="/new-article">test</Link>
+        <Link href="/new-article" className={styles.write_button_container}>
+          <SvgIcon src={IconsEnum.write} size={34} />
+          <span>Write</span>
+        </Link>
         <Button
           className={styles.button}
           variant="success"
-          onClick={() => modal?.openModal(<LoginComponent />)}
+          onClick={() => modal?.openModal(<RegisterComponent />)}
         >
           Sign up
         </Button>
@@ -33,7 +37,7 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
           variant="text"
           onClick={() => modal?.openModal()}
         >
-          Sign up
+          Sign in
         </Button>
       </div>
     </nav>

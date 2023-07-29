@@ -1,6 +1,8 @@
 export enum IconsEnum {
   search = '/icons/search.svg',
-  loader = '/icons/loader.svg'
+  loader = '/icons/loader.svg',
+  write = '/icons/write.svg',
+  close = '/icons/close.svg'
 }
 
 export interface SvgIconProps {

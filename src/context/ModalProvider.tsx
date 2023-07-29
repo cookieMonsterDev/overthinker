@@ -1,8 +1,7 @@
 "use client";
 import { LoginComponent } from "@/components/Modals/Login/Login.component";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import ReactDOM from "react-dom";
-import cookies from 'js-cookie';
 
 interface ModalContextType {
   openModal: (component?: React.ReactNode) => void;
@@ -20,7 +19,6 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const openModal = (component: any = <LoginComponent />) => {
-    document.cookie = "modal=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setModal({ component, isOpen: true });
   };
 
