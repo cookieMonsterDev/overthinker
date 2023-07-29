@@ -1,10 +1,9 @@
 "use client";
-import { LoginComponent } from "@/components/Modals/Login/Login.component";
 import { createContext, useContext, useState } from "react";
 import ReactDOM from "react-dom";
 
 interface ModalContextType {
-  openModal: (component?: React.ReactNode) => void;
+  openModal: (component: React.ReactNode) => void;
   closeModal: () => void;
 }
 
@@ -18,7 +17,7 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
     isOpen: false,
   });
 
-  const openModal = (component: any = <LoginComponent />) => {
+  const openModal = (component: any) => {
     setModal({ component, isOpen: true });
   };
 

@@ -4,13 +4,10 @@ import { NavBarProps } from "./NavBar.types";
 import styles from "./NavBar.module.scss";
 import Link from "next/link";
 import { Search } from "../Search";
-import { useModal } from "@/context/ModalProvider";
 import { Button } from "../Button";
 import { IconsEnum, SvgIcon } from "../SvgIcon";
-import { RegisterComponent } from "../Modals/Register/Register.component";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
-  const modal = useModal();
 
   return (
     <nav className={styles.container}>
@@ -25,20 +22,16 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
           <SvgIcon src={IconsEnum.write} size={34} />
           <span>Write</span>
         </Link>
-        <Button
-          className={styles.button}
-          variant="success"
-          onClick={() => modal?.openModal(<RegisterComponent />)}
-        >
-          Sign up
-        </Button>
-        <Button
-          className={styles.button}
-          variant="text"
-          onClick={() => modal?.openModal()}
-        >
-          Sign in
-        </Button>
+        <Link href="/auth/register">
+          <Button className={styles.button} variant="success">
+            Sign up
+          </Button>
+        </Link>
+        <Link href="/auth/register">
+          <Button className={styles.button} variant="text">
+            Sign in
+          </Button>
+        </Link>
       </div>
     </nav>
   );

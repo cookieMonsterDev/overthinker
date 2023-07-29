@@ -42,23 +42,8 @@ export const TextInputComponent: React.FC<InputProps> = ({
   useOnClickOutside(containerRef, () => setFocus(false));
 
   return (
-    <div
-      className={InputClass}
-      style={style}
-      onClick={() => setFocus(true)}
-      ref={containerRef}
-    >
-      <input
-        id={id}
-        name={name}
-        onChange={handleChenge}
-        value={value}
-        ref={ref}
-        type={type}
-      />
-      {icon && <span className={styles.icon}>{icon}</span>}
-      {placeholder && <label className={styles.label}>{placeholder}</label>}
-      {helperText && <label className={styles.helperText}>{helperText}</label>}
+    <div>
+      <input placeholder={placeholder}/>
     </div>
   );
 };

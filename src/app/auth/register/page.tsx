@@ -1,26 +1,26 @@
 "use client";
 import { TextInput } from "@/components/TextInput";
-import styles from "./LoginPage.module.scss";
-import default_styles from "../auth.module.scss";
 import { Button } from "@/components/Button";
+import styles from "./RegisterPage.module.scss";
+import default_styles from "../auth.module.scss";
 import { IconsEnum, SvgIcon } from "@/components/SvgIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const router = useRouter();
 
   return (
     <dialog open className={styles.container}>
       <Link href="/" className={default_styles.close_button}>
-        <SvgIcon src={IconsEnum.close} />
+        <SvgIcon src={IconsEnum.close} onClick={() => router.back()} />
       </Link>
-      <h1 className={default_styles.title}>Welcom back</h1>
+      <h1 className={default_styles.title}>Join OverThinker</h1>
       <form className={styles.form}>
         <TextInput />
         <TextInput />
         <Button
-          className={styles.login_button}
+          className={styles.register_button}
           variant="default"
           type="submit"
           onClick={(e) => {
@@ -31,13 +31,13 @@ const LoginPage = () => {
         </Button>
       </form>
       <p>
-        No account?
-        <Link href="/auth/register" className={styles.redirect_button}>
-          Create one
+        Already have an account?
+        <Link href="/auth/login" className={styles.redirect_button}>
+          Sign in
         </Link>
       </p>
     </dialog>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

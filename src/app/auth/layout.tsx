@@ -1,4 +1,4 @@
-import styles from "./auth.module.scss";
+import { BlurOverlay } from "@/components/BlurOverlay";
 
 export default function AuthLayout({
   children,
@@ -7,8 +7,8 @@ export default function AuthLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true} className={styles.container}>
-        {children}
+      <body suppressHydrationWarning={true}>
+        <BlurOverlay>{children}</BlurOverlay>
       </body>
     </html>
   );

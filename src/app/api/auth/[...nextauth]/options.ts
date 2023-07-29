@@ -32,6 +32,9 @@ const options: NextAuthOptions = {
       },
     }),
   ],
+  pages: {
+    signIn: "/auth/login",
+  },
   callbacks: {
     async jwt({ user, token }) {
       return { ...user, ...token };
