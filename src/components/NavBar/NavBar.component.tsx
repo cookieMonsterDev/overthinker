@@ -5,7 +5,8 @@ import styles from "./NavBar.module.scss";
 import Link from "next/link";
 import { Search } from "../Search";
 import { Button } from "../Button";
-import { IconsEnum, SvgIcon } from "../SvgIcon";
+import { SvgIcon } from "../SvgIcon";
+import { IconsEnum } from "@/common/constants";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
 
@@ -27,7 +28,7 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
             Sign up
           </Button>
         </Link>
-        <Link href="/auth/register">
+        <Link href="/auth/login">
           <Button className={styles.button} variant="text">
             Sign in
           </Button>

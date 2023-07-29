@@ -1,3 +1,4 @@
+import { ImagesEnum } from "@/common/constants";
 import { BlurOverlay } from "@/components/BlurOverlay";
 
 export default function AuthLayout({
@@ -6,10 +7,6 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning={true}>
-        <BlurOverlay>{children}</BlurOverlay>
-      </body>
-    </html>
+    <BlurOverlay backgroundImage={ImagesEnum.newspaper}>{children}</BlurOverlay>
   );
 }

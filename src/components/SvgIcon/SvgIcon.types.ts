@@ -1,9 +1,4 @@
-export enum IconsEnum {
-  search = '/icons/search.svg',
-  loader = '/icons/loader.svg',
-  write = '/icons/write.svg',
-  close = '/icons/close.svg'
-}
+import { IconsEnum } from "@/common/constants";
 
 export interface SvgIconProps {
   src: IconsEnum | string;
