@@ -1,14 +1,23 @@
 @import "../../public/fonts/fonts.scss";
 
 :root {
+  --primary: rgb(0, 0, 0);
+  --light-primary: rgba(0, 0, 0, 0.75);
+  --ultra-light-primary: rgba(0, 0, 0, 0.15);
+  --secondary: rgb(255, 255, 255);
   --success: rgb(26, 137, 23);
+  --dark-success: rgb(18, 96, 15);
+  --light-success: rgba(27, 137, 23, 0.75);
   --error: rgb(201, 74, 74);
+  --dark-error: rgb(152, 55, 55);
+  --light-error: rgba(201, 74, 74, 0.75);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html,

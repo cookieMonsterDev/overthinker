@@ -7,7 +7,7 @@ import { IconsEnum, SvgIcon } from "../SvgIcon";
 export const SearchComponent: React.FC<SearchProps> = () => {
   return (
     <div className={styles.container}>
-      <SvgIcon src={IconsEnum.search} alt="search icon"/>
+      <SvgIcon src={IconsEnum.search}/>
       {/* <input /> */}
     </div>
   );

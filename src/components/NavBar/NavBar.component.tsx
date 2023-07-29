@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Search } from "../Search";
 import { useModal } from "@/context/ModalProvider";
 import { LoginComponent } from "../Modals/Login/Login.component";
+import { Button } from "../Button";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
   const modal = useModal();
@@ -18,9 +19,12 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
         </Link>
         <Search />
       </div>
-      <button onClick={() => modal?.openModal(<LoginComponent />)}>
+      <Button variant='default' disabled onClick={() => modal?.openModal(<LoginComponent />)}>
         Sign In
-      </button>
+      </Button>
+      <Button  variant='text' isLoading={true} onClick={() => modal?.openModal(<LoginComponent />)}>
+        Sign In
+      </Button>
     </nav>
   );
 };

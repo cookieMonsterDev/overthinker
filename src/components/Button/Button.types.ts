@@ -5,6 +5,9 @@ export interface ButtonProps {
   role?: string;
   onClick?: (e: any) => void;
   children?: React.ReactNode;
-  variant?: "contained" | "outlined" | "text";
-  rounded?: "none" | "small" | "medium"; 
+  variant?: "default" | "success" | "error" | "outlined" | "text";
+  isLoading?: boolean;
+  disabled?: boolean;
+  loaderSize?: number;
+  loaderColor?: string;
 }

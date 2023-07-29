@@ -1,15 +1,17 @@
 export enum IconsEnum {
   search = '/icons/search.svg',
+  loader = '/icons/loader.svg'
 }
 
 export interface SvgIconProps {
   src: IconsEnum | string;
+  onClick?: (e: any) => void;
+  color?: string;
+  size?: number;
+  rotate?: '0' | '90' | '180' | '270';
   className?: string;
   style?: React.CSSProperties;
-  onClick?: (e: any) => void;
+  defaultStroke?: boolean;
   role?: string;
-  alt: string
-  height?: number;
-  width?: number;
 }
 
