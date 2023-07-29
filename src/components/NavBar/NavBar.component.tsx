@@ -19,12 +19,23 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
         </Link>
         <Search />
       </div>
-      <Button variant='default' disabled onClick={() => modal?.openModal(<LoginComponent />)}>
-        Sign In
-      </Button>
-      <Button  variant='text' isLoading={true} onClick={() => modal?.openModal(<LoginComponent />)}>
-        Sign In
-      </Button>
+      <div className={styles.subcontainer_right}>
+        <Link href="/new-article">test</Link>
+        <Button
+          className={styles.button}
+          variant="success"
+          onClick={() => modal?.openModal(<LoginComponent />)}
+        >
+          Sign up
+        </Button>
+        <Button
+          className={styles.button}
+          variant="text"
+          onClick={() => modal?.openModal()}
+        >
+          Sign up
+        </Button>
+      </div>
     </nav>
   );
 };

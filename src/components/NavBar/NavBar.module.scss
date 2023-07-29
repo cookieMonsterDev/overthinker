@@ -11,6 +11,18 @@
   align-items: center;
 }
 
+.subcontainer_right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.button {
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
 .title {
   font-family: 'Chomsky', sans-serif;
   font-size: 2.5rem;
@@ -18,12 +30,4 @@
   margin-right: 0.5rem;
 }
 
-.signup_button {
 
-}
-
-.signin_button {
-
-}
-
-//#TODO font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
