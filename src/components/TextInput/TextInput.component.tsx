@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
 import { InputProps } from "./TextInput.types";
 import styles from "./TextInput.module.scss";
 import cn from "classnames";
-import useOnClickOutside from "@/hooks/useOnClickOutside";
+import { SvgIcon } from "../SvgIcon";
 
 export const TextInputComponent: React.FC<InputProps> = ({
   id,
@@ -10,40 +9,42 @@ export const TextInputComponent: React.FC<InputProps> = ({
   value,
   type = "text",
   placeholder,
-  helperText,
+  label,
   style,
-  error = false,
+  error,
   className,
   icon,
-  ref,
   onChange,
+  onIconClick,
 }) => {
-  const valueRef = useRef<any | null>(null);
-  const containerRef = useRef<HTMLInputElement | null>(null);
-  const [focus, setFocus] = useState(false);
-
-  const InputClass = cn(
-    styles.input,
+  const contClass = cn(
+    styles.container,
     {
-      [styles[`input_focus`]]: focus,
-      [styles[`input_active`]]: valueRef.current || focus || value,
-      [styles[`input_helperText`]]: helperText,
-      [styles[`input_error`]]: error,
-      [styles[`input_icon`]]: type === "password",
+      [styles[`container_error`]]: error,
     },
     className
   );
 
-  const handleChenge = (event: React.ChangeEvent<HTMLInputElement>) => {
-    valueRef.current = event.target.value;
-    onChange && onChange(event);
-  };
-
-  useOnClickOutside(containerRef, () => setFocus(false));
+  const inputClass = cn(styles.input, {
+    [styles[`input_error`]]: error,
+  });
 
   return (
-    <div>
-      <input placeholder={placeholder}/>
+    <div style={style} className={contClass}>
+      {label && <label className={styles.label}>{label}</label>}
+      <input
+        className={inputClass}
+        placeholder={placeholder}
+        id={id}
+        value={value}
+        name={name}
+        type={type}
+        onChange={onChange}
+      />
+      {error && <span className={styles.error}>{error}</span>}
+      {icon && (
+        <SvgIcon src={icon} className={styles.icon} onClick={onIconClick} />
+      )}
     </div>
   );
 };

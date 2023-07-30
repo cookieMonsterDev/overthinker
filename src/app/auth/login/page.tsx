@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { TextInput } from "@/components/TextInput";
 import styles from "./LoginPage.module.scss";
 import default_styles from "../auth.module.scss";
@@ -10,6 +11,7 @@ import { IconsEnum } from "@/common/constants";
 
 const LoginPage = () => {
   const router = useRouter();
+  const [state, setStata] = useState("password");
 
   return (
     <dialog open className={styles.container}>
@@ -18,18 +20,26 @@ const LoginPage = () => {
       </Link>
       <h1 className={default_styles.title}>Welcom back</h1>
       <form className={styles.form}>
-        {/* <TextInput />
-        <TextInput />
+        <TextInput placeholder="Email" />
+        <TextInput
+          placeholder="Password"
+          type={state}
+          icon={IconsEnum.close}
+          onIconClick={() =>
+            setStata(state === "password" ? "text" : "password")
+          }
+        />
         <Button
           className={styles.login_button}
           variant="default"
           type="submit"
           onClick={(e) => {
             e.preventDefault();
+            setStata("Required 1 uppercase letter");
           }}
         >
           Sign in
-        </Button> */}
+        </Button>
       </form>
       <p>
         No account?

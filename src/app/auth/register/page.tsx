@@ -28,7 +28,7 @@ const RegisterPage = () => {
             e.preventDefault();
           }}
         >
-          Sign in
+          Sign up
         </Button>
       </form>
       <p>
