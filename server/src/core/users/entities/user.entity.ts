@@ -4,12 +4,6 @@ import { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class User extends Document {
   @Prop({
-    default: null,
-    unique: true
-  })
-  username: string
-
-  @Prop({
     required: true,
     unique: true,
   })
@@ -38,7 +32,7 @@ export class User extends Document {
   @Prop({
     default: null,
   })
-  avatar_url: string;
+  avatarUrl: string;
 
   @Prop({
     enum: ['USER', 'ADMIN'],

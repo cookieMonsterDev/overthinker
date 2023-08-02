@@ -1,7 +1,7 @@
 import { Controller, Post, Body, UseGuards, Get } from '@nestjs/common';
 import { AuthResponse, UserID } from 'src/common/decorators';
 import { JwtGuard, LocalGuard } from './guards';
-import { Registerdto } from './dto/register.dto';
+import { RegisterDto } from './dto/register.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -11,7 +11,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  signUp(@Body() body: Registerdto): Promise<any> {
+  signUp(@Body() body: RegisterDto): Promise<any> {
     return this.authService.register(body);
   }
 

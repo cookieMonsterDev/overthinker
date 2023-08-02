@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Registerdto } from './dto/register.dto';
+import { RegisterDto } from './dto/register.dto';
 import { JwtPayload } from './types/jwt-payload';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -11,7 +11,6 @@ import * as argon2 from 'argon2';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../users/entities/user.entity';
-import { privateUser } from '../users/types/user.selectors';
 
 @Injectable()
 export class AuthService {
@@ -42,7 +41,7 @@ export class AuthService {
     }
   }
 
-  async register({ password, ...rest }: Registerdto): Promise<any> {
+  async register({ password, ...rest }: RegisterDto): Promise<any> {
     try {
       const passwordHash = await argon2.hash(password);
 

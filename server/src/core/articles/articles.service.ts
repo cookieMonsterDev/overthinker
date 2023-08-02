@@ -4,7 +4,7 @@ import { UpdateArticleDto } from './dto/update-article.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Article } from './entities/article.entity';
 import { Model } from 'mongoose';
-import { publicUser } from '../users/types/user.selectors';
+import { publicUser } from '../../common/selectors/user.selectors';
 
 @Injectable()
 export class ArticlesService {

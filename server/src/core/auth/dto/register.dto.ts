@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 import { UserRoles } from '../types/roles';
 
-export class Registerdto {
+export class RegisterDto {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
@@ -44,6 +44,14 @@ export class Registerdto {
   @IsOptional()
   @IsString()
   lastName: string;
+
+  @IsOptional()
+  @IsString()
+  bio: string;
+
+  @IsOptional()
+  @IsString()
+  avatarUrl: string;
 
   @IsOptional()
   @IsEnum(UserRoles)
