@@ -7,8 +7,12 @@ import { Search } from "../Search";
 import { Button } from "../Button";
 import { SvgIcon } from "../SvgIcon";
 import { IconsEnum } from "@/common/constants";
+import { useSession } from "next-auth/react";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
+  const { data: session, status } = useSession()
+
+  console.log(session)
 
   return (
     <nav className={styles.container}>

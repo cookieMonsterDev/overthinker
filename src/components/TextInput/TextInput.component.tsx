@@ -16,6 +16,7 @@ export const TextInputComponent: React.FC<InputProps> = ({
   icon,
   onChange,
   onIconClick,
+  iconClassName,
 }) => {
   const contClass = cn(
     styles.container,
@@ -27,7 +28,10 @@ export const TextInputComponent: React.FC<InputProps> = ({
 
   const inputClass = cn(styles.input, {
     [styles[`input_error`]]: error,
+    [styles[`input_withIcon`]]: icon,
   });
+
+  const iconClass = cn(styles.icon, iconClassName);
 
   return (
     <div style={style} className={contClass}>
@@ -43,7 +47,7 @@ export const TextInputComponent: React.FC<InputProps> = ({
       />
       {error && <span className={styles.error}>{error}</span>}
       {icon && (
-        <SvgIcon src={icon} className={styles.icon} onClick={onIconClick} />
+        <SvgIcon src={icon} className={iconClass} onClick={onIconClick} size={30} />
       )}
     </div>
   );

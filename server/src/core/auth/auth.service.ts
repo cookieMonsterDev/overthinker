@@ -27,7 +27,7 @@ export class AuthService {
 
       const passMatches = await argon2.verify(user.hash, password);
       if (!passMatches)
-        throw new ForbiddenException('Email or password is wrong');
+        throw new ForbiddenException('Invalid credentials');
 
       const token = await this.generateToken({
         userId: user._id,
@@ -77,7 +77,7 @@ export class AuthService {
   private async generateToken(payload: JwtPayload) {
     const token = await this.Jwt.sign(payload, {
       secret: process.env.AUTH_TOKEN_SECRET,
-      expiresIn: '15m',
+      expiresIn: '7d',
     });
 
     return token;

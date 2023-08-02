@@ -11,6 +11,7 @@ export interface InputProps {
   className?: string;
   style?: React.CSSProperties;
   icon?: IconsEnum | string;
+  iconClassName?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   onIconClick?: (event: any) => void | undefined;
 }

@@ -1,5 +1,5 @@
-
 import { Api } from "@/lib/axios";
+import { isAxiosError } from "axios";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -27,7 +27,11 @@ const options: NextAuthOptions = {
 
           return data;
         } catch (error) {
-          return null;
+          if (isAxiosError(error)) {
+            throw new Error(error.response?.data.message);
+          } else {
+            throw new Error("Something went wrong!");
+          }
         }
       },
     }),

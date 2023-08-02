@@ -17,24 +17,10 @@
     fade;
 }
 
-.login_button {
-  min-width: 15rem;
-  border-radius: 5rem;
-  font-size: 1.2rem;
-
-}
 
 .redirect_button {
   color: var(--light-success);
   padding: 0.2rem;
   font-size: 1rem;
   font-weight: 700;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 80%;
 }
