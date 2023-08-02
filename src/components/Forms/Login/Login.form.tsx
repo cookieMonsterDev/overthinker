@@ -42,6 +42,8 @@ const LoginForm = () => {
         if (signInResponse?.error) {
           setError(signInResponse.error);
         }
+
+        console.log(signInResponse)
       } catch (error) {
         console.error(error);
       } finally {

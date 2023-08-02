@@ -11,6 +11,7 @@ import * as argon2 from 'argon2';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../users/entities/user.entity';
+import { privateUser } from '../users/types/user.selectors';
 
 @Injectable()
 export class AuthService {
@@ -21,20 +22,21 @@ export class AuthService {
 
   async login({ email, password }: LoginDto): Promise<any> {
     try {
-      const user = await this.userModel.findOne({ email });
+      const user = await this.userModel.findOne({ email }).lean();
 
       if (!user) throw new NotFoundException('User not found');
 
       const passMatches = await argon2.verify(user.hash, password);
-      if (!passMatches)
-        throw new ForbiddenException('Invalid credentials');
+      if (!passMatches) throw new ForbiddenException('Invalid credentials');
 
       const token = await this.generateToken({
         userId: user._id,
         role: user.role,
       });
 
-      return { user, token };
+      const { hash, ...userWithoutHash } = user;
+
+      return { user: { ...userWithoutHash }, token };
     } catch (error) {
       throw error;
     }
@@ -43,7 +45,7 @@ export class AuthService {
   async register({ password, ...rest }: Registerdto): Promise<any> {
     try {
       const passwordHash = await argon2.hash(password);
-      
+
       const user = await this.userModel.create({
         hash: passwordHash,
         ...rest,
@@ -54,7 +56,9 @@ export class AuthService {
         role: user.role,
       });
 
-      return { user, token };
+      const { hash, ...userWithoutHash } = user.toJSON();
+
+      return { user: { ...userWithoutHash }, token };
     } catch (error) {
       throw error;
     }

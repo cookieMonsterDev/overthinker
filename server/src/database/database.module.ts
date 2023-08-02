@@ -1,5 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ArticleSchema } from 'src/core/articles/entities/article.entity';
 import { UserSchema } from 'src/core/users/entities/user.entity';
 
 @Global()
@@ -11,7 +12,8 @@ import { UserSchema } from 'src/core/users/entities/user.entity';
       }),
     }),
     MongooseModule.forFeature([
-      { name: 'User', schema: UserSchema }, 
+      { name: 'User', schema: UserSchema },
+      { name: 'Article', schema: ArticleSchema },
     ]),
   ],
   exports: [MongooseModule],

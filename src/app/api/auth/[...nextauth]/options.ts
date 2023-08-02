@@ -27,11 +27,20 @@ const options: NextAuthOptions = {
 
           return data;
         } catch (error) {
-          if (isAxiosError(error)) {
-            throw new Error(error.response?.data.message);
-          } else {
-            throw new Error("Something went wrong!");
-          }
+          // if (isAxiosError(error)) {
+          //   return {
+          //     error: error.response?.data.message,
+          //     status: error.response?.data.statusCode,
+          //     ok: false,
+          //   };
+          // } else {
+          //   return {
+          //     error: "Something went wrong!",
+          //     status: 0,
+          //     ok: false,
+          //   };
+          // }
+          return null
         }
       },
     }),
