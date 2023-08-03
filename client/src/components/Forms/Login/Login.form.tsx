@@ -6,6 +6,7 @@ import styles from "./Login.module.scss";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [isPasswordVisible, setPasswordVisible] = useState({
@@ -14,6 +15,7 @@ const LoginForm = () => {
   });
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const handlePasswordVisibility = () => {
     if (isPasswordVisible.type === "password") {
@@ -33,7 +35,7 @@ const LoginForm = () => {
     validateOnBlur: false,
     onSubmit: async (values) => {
       try {
-        setLoading(true)
+        setLoading(true);
         const signInResponse = await signIn("credentials", {
           ...values,
           redirect: false,
@@ -43,11 +45,13 @@ const LoginForm = () => {
           setError(signInResponse.error);
         }
 
-        console.log(signInResponse)
+        if (!signInResponse?.error) {
+          router.push("/");
+        }
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     },
   });

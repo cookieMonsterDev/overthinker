@@ -21,6 +21,7 @@ export class UsersController {
 
   @Get()
   findAll(@Query() queries: UserQueriesDto) {
+    console.log(queries)
     return this.usersService.findAll(queries);
   }
 

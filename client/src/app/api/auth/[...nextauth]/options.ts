@@ -1,6 +1,8 @@
 import { Api } from "@/lib/axios";
+import { Me } from "@/types/me.type";
 import { isAxiosError } from "axios";
 import { NextAuthOptions } from "next-auth";
+import jwt from "jsonwebtoken";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const options: NextAuthOptions = {
@@ -27,20 +29,11 @@ const options: NextAuthOptions = {
 
           return data;
         } catch (error) {
-          // if (isAxiosError(error)) {
-          //   return {
-          //     error: error.response?.data.message,
-          //     status: error.response?.data.statusCode,
-          //     ok: false,
-          //   };
-          // } else {
-          //   return {
-          //     error: "Something went wrong!",
-          //     status: 0,
-          //     ok: false,
-          //   };
-          // }
-          return null
+          if (isAxiosError(error)) {
+            throw new Error(error.response?.data.message);
+          } else {
+            throw new Error("Something went wrong!");
+          }
         }
       },
     }),
@@ -53,12 +46,11 @@ const options: NextAuthOptions = {
       return { ...user, ...token };
     },
     async session({ session, token }) {
-      const user = token.user as any;
-      session.user = {
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
-        ...user,
-      } as any;
+      const user = token.user as Me;
+      const theToken = token.token as string;
+      const decodedToken = jwt.decode(theToken) as any;
+      session.user = { ...user, token: theToken};
+      session.expires = new Date(decodedToken.exp * 1000).toISOString()
       return session;
     },
   },

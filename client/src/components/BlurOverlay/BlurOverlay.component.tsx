@@ -38,7 +38,7 @@ export const BlurOverlayComponent: React.FC<BlurOverlayProps> = ({
           priority={true}
           src={backgroundImage!}
           alt="overlay"
-          layout="fill"
+          fill={true}
           className={styles.bg_image}
         />
       )}

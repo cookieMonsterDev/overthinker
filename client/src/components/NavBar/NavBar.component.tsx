@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { NavBarProps } from "./NavBar.types";
 import styles from "./NavBar.module.scss";
 import Link from "next/link";
@@ -7,12 +6,10 @@ import { Search } from "../Search";
 import { Button } from "../Button";
 import { SvgIcon } from "../SvgIcon";
 import { IconsEnum } from "@/common/constants";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
-  const { data: session, status } = useSession()
-
-  console.log(session)
+  const { data: session, status } = useSession();
 
   return (
     <nav className={styles.container}>
@@ -27,16 +24,21 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
           <SvgIcon src={IconsEnum.write} size={34} />
           <span>Write</span>
         </Link>
-        <Link href="/auth/register">
-          <Button className={styles.button} variant="success">
-            Sign up
-          </Button>
-        </Link>
-        <Link href="/auth/login">
-          <Button className={styles.button} variant="text">
-            Sign in
-          </Button>
-        </Link>
+        {!session && (
+          <>
+            <Link href="/auth/register">
+              <Button className={styles.button} variant="success">
+                Sign up
+              </Button>
+            </Link>
+            <Link href="/auth/login">
+              <Button className={styles.button} variant="text">
+                Sign in
+              </Button>
+            </Link>
+          </>
+        )}
+        {session && <Button onClick={() => signOut()}>Sign out</Button>}
       </div>
     </nav>
   );

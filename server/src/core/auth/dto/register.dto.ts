@@ -7,6 +7,7 @@ import {
   Matches,
   IsOptional,
   IsEnum,
+  IsUrl
 } from 'class-validator';
 import { UserRoles } from '../types/roles';
 
@@ -50,7 +51,7 @@ export class RegisterDto {
   bio: string;
 
   @IsOptional()
-  @IsString()
+  @IsUrl()
   avatarUrl: string;
 
   @IsOptional()
