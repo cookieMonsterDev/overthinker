@@ -13,10 +13,10 @@ export const IsOrder = (validationOptions?: ValidationOptions) => {
       options: validationOptions,
       validator: {
         validate(value: any, args: ValidationArguments) {
-          return value === '-1' || value === '1';
+          return value === 'asc' || value === 'desc';
         },
         defaultMessage(args: ValidationArguments) {
-          return `${args.property} query must be either '1' or '-1'`;
+          return `${args.property} query must be either 'asc' or 'desc'`;
         },
       },
     });

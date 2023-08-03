@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
 import { privateUser, publicUser } from 'src/common/selectors';
 import { UserQueriesDto } from './dto/queries-user.dto';
+import { Users } from './types';
 
 @Injectable()
 export class UsersService {
@@ -12,17 +13,25 @@ export class UsersService {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
-  async findAll({
-    orderByCreatedAt,
-    orderByUpdatedAt,
-  }: UserQueriesDto): Promise<User[]> {
+  async findAll(queries: UserQueriesDto): Promise<Users> {
     try {
-      const users = await this.userModel.find().select(publicUser).sort({
-        createdAt: orderByCreatedAt,
-        updatedAt: orderByUpdatedAt,
-      });
+      const users = await this.userModel
+        .find()
+        .select(publicUser)
+        .sort({
+          createdAt: queries.orderByCreatedAt,
+          updatedAt: queries.orderByUpdatedAt,
+        })
+        .limit(queries.limit * 1)
+        .skip((queries.page - 1) * queries.limit);
 
-      return users;
+      const totalPages = await this.userModel.countDocuments();
+
+      return {
+        totalPages: Math.ceil(totalPages / queries.limit),
+        currentPage: queries.page,
+        users,
+      };
     } catch (error) {}
   }
 
