@@ -1,6 +1,6 @@
 import { Transform } from 'class-transformer';
-import { IsInt, IsNumber, IsOptional, Min } from 'class-validator';
-import { Order } from 'src/common/types/order.types';
+import { IsInt, IsOptional, Min } from 'class-validator';
+import { Order } from 'src/common/types';
 import { IsOrder } from 'src/common/validators/order.validator';
 
 export class UserQueriesDto {

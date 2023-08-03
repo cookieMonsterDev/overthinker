@@ -5,7 +5,7 @@ import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
 import { privateUser, publicUser } from 'src/common/selectors';
 import { UserQueriesDto } from './dto/queries-user.dto';
-import { Users } from './types';
+import { Pagination } from 'src/common/types';
 
 @Injectable()
 export class UsersService {
@@ -13,7 +13,7 @@ export class UsersService {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
-  async findAll(queries: UserQueriesDto): Promise<Users> {
+  async findAll(queries: UserQueriesDto): Promise<Pagination<User>> {
     try {
       const users = await this.userModel
         .find()
