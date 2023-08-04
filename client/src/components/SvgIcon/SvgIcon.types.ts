@@ -10,5 +10,6 @@ export interface SvgIconProps {
   style?: React.CSSProperties;
   defaultStroke?: boolean;
   role?: string;
+  type?: 'server' | 'client'
 }
 

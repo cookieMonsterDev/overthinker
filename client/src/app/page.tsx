@@ -1,7 +1,12 @@
-export default function Home() {
+import { NavBar } from "@/components/NavBar"
+
+export default async function Home() {
   return (
-    <main>
+    <>
+     <NavBar />
+     <main>
       test
     </main>
+    </>
   )
 }

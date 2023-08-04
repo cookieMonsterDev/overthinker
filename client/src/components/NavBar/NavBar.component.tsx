@@ -4,9 +4,10 @@ import styles from "./NavBar.module.scss";
 import Link from "next/link";
 import { Search } from "../Search";
 import { Button } from "../Button";
-import { SvgIcon } from "../SvgIcon";
 import { IconsEnum } from "@/common/constants";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
+import { UserMenu } from "../UserMenu";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
   const { data: session, status } = useSession();
@@ -21,7 +22,13 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
       </div>
       <div className={styles.subcontainer_right}>
         <Link href="/new-article" className={styles.write_button_container}>
-          <SvgIcon src={IconsEnum.write} size={34} />
+          <Image
+            src={IconsEnum.write}
+            width={34}
+            height={34}
+            priority
+            alt="write_icon"
+          />
           <span>Write</span>
         </Link>
         {!session && (
@@ -39,6 +46,7 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
           </>
         )}
         {session && <Button onClick={() => signOut()}>Sign out</Button>}
+        <UserMenu />
       </div>
     </nav>
   );

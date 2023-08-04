@@ -13,8 +13,6 @@
     "@uiw/react-md-editor": "^3.23.3",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
-    "eslint": "8.45.0",
-    "eslint-config-next": "13.4.11",
     "formik": "^2.4.2",
     "jsonwebtoken": "^9.0.1",
     "next": "13.4.11",
@@ -31,6 +29,8 @@
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "eslint": "8.45.0",
+    "eslint-config-next": "13.4.11",
     "sass": "^1.64.1"
   }
 }
