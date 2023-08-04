@@ -6,6 +6,8 @@ export enum IconsEnum {
   visibility = '/icons/visibility.svg',
   visibilityoff = '/icons/visibilityoff.svg',
   downArrow = '/icons/downArrow.svg',
+  profile = '/icons/profile.svg',
+  bookmarks = '/icons/bookmarks.svg'
 }
 
 export enum ImagesEnum {

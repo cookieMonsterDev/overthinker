@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  padding: 0.5rem 1rem
+  padding: 0.5rem 1rem;
 }
 
 .icons {
@@ -13,7 +13,7 @@
     &:nth-child(1) {
       border-radius: 50%;
     }
-  
+
     &:nth-child(2) {
       margin-left: 0.5rem;
       fill: rgb(107, 107, 107);
@@ -26,10 +26,135 @@
   right: 0;
   top: 100%;
   padding: 1rem;
-  min-height: 53rem;
   min-width: 20rem;
   background-color: var(--secondary);
   box-shadow: rgb(204, 204, 204) 0px 1px 4px;
 }
 
+.auth_section {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
+  > h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+
+    &:nth-child(2) {
+      background: var(--success);
+      color: var(--secondary);
+      transition: background-color 300ms;
+
+      &:hover {
+        background: var(--dark-success);
+      }
+
+      &:active {
+        background: var(--dark-success);
+      }
+    }
+
+    &:nth-child(3) {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      transition: background-color 300ms;
+
+      &:hover {
+        background: var(--ultra-light-primary);
+      }
+
+      &:active {
+        background: var(--ultra-light-primary);
+      }
+    }
+  }
+}
+
+.no_auth_list {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  border-top: 1px solid rgb(204, 204, 204);
+  transition: 300ms;
+
+  > a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.6);
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
+
+.auth_list {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+
+  a {
+    display: flex;
+    align-items: center;
+
+    > span {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.6);
+      transition: 300ms;
+    }
+
+    svg {
+      stroke: rgba(0, 0, 0, 0.6);
+      transition: 300ms;
+    }
+
+    &:hover {
+      color: var(--primary);
+
+      > span {
+        color: var(--primary);
+      }
+
+      svg {
+        stroke: var(--primary);
+      }
+    }
+  }
+}
+
+.signout_section {
+  padding: 1rem;
+  cursor: pointer;
+  padding-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgb(204, 204, 204);
+  transition: 300ms;
+
+  &:hover {
+    color: var(--primary);
+  }
+}

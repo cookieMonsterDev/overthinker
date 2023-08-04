@@ -12,7 +12,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   role = "button",
   onClick,
   children,
-  variant = "contained",
+  variant = "text",
   isLoading = false,
   disabled = false,
   loaderSize = 40,

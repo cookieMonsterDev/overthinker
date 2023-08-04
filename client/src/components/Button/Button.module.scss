@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
   display: inline-flex;
-  padding: 0.3rem 1rem;
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
@@ -74,7 +73,7 @@
     &_outlined {
       background: transparent;
       color: var(--primary);
-      border: 3px solid var(--primary);
+      border: 1px solid var(--primary);
       transition: background-color 300ms;
 
       &:hover {
