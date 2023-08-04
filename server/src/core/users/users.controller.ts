@@ -33,10 +33,10 @@ export class UsersController {
   @UseGuards(JwtGuard, UserOrAdminGuard)
   @Put(':userId')
   updateOneById(
-    @Param('userId') id: string,
+    @Param('userId') userId: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.update(id, updateUserDto);
+    return this.usersService.update(userId, updateUserDto);
   }
 
   @UseGuards(JwtGuard, UserOrAdminGuard)
