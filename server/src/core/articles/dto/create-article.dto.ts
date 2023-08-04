@@ -15,7 +15,10 @@ export class CreateArticleDto {
 
   @IsOptional()
   tags: string[];
+}
 
+export class CreateArticleWithAuthorDto extends CreateArticleDto {
   @IsString()
+  @IsNotEmpty()
   author: string;
 }

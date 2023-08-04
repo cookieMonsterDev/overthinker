@@ -30,7 +30,7 @@ export class UsersService {
       return {
         totalPages: Math.ceil(totalPages / queries.limit),
         currentPage: queries.page,
-        users,
+        data: users,
       };
     } catch (error) {}
   }
@@ -45,10 +45,13 @@ export class UsersService {
     }
   }
 
-  async update(userId: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateOneById(
+    userId: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User> {
     try {
       const updatedUser = await this.userModel
-        .findByIdAndUpdate(userId, updateUserDto)
+        .findByIdAndUpdate(userId, updateUserDto, { new: true })
         .select(privateUser);
 
       return updatedUser;

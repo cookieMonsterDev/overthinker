@@ -21,7 +21,6 @@ export class UsersController {
 
   @Get()
   findAll(@Query() queries: UserQueriesDto) {
-    console.log(queries)
     return this.usersService.findAll(queries);
   }
 
@@ -36,7 +35,7 @@ export class UsersController {
     @Param('userId') userId: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.update(userId, updateUserDto);
+    return this.usersService.updateOneById(userId, updateUserDto);
   }
 
   @UseGuards(JwtGuard, UserOrAdminGuard)

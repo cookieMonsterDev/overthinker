@@ -10,9 +10,9 @@ export class Article extends Document {
   title: string;
 
   @Prop({
-    required: true
+    required: true,
   })
-  description: string
+  description: string;
 
   @Prop({
     required: true,
@@ -24,7 +24,11 @@ export class Article extends Document {
   })
   tags: string[];
 
-  @Prop({ type: SchemaTypes.Types.ObjectId, ref: User.name, required: true })
+  @Prop({
+    type: SchemaTypes.Types.ObjectId,
+    ref: User.name,
+    required: true,
+  })
   author: User;
 }
 

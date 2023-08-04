@@ -7,12 +7,16 @@ import {
   Param,
   Delete,
   UseGuards,
+  HttpCode,
+  Query
 } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { JwtGuard } from '../auth/guards';
 import { AuthorOrAdminGuard } from 'src/common/guards/author-or-admin.guard';
+import { UserID } from 'src/common/decorators';
+import { ArticleQueriesDto } from './dto/queries-article.dto';
 
 @Controller('articles')
 export class ArticlesController {
@@ -20,13 +24,13 @@ export class ArticlesController {
 
   @UseGuards(JwtGuard)
   @Post()
-  create(@Body() createArticleDto: CreateArticleDto) {
-    return this.articlesService.create(createArticleDto);
+  create(@Body() createArticleDto: CreateArticleDto, @UserID() author: string) {
+    return this.articlesService.create({ ...createArticleDto, author });
   }
 
   @Get()
-  findAll() {
-    return this.articlesService.findAll();
+  findAll(@Query() query: ArticleQueriesDto) {
+    return this.articlesService.findAll(query);
   }
 
   @Get(':articleId')
@@ -43,7 +47,9 @@ export class ArticlesController {
     return this.articlesService.updateOneById(articleId, updateArticleDto);
   }
 
+  @UseGuards(JwtGuard, AuthorOrAdminGuard)
   @Delete(':articleId')
+  @HttpCode(204)
   remove(@Param('articleId') articleId: string) {
     return this.articlesService.removeOneById(articleId);
   }

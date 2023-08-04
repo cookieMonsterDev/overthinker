@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateArticleDto } from './dto/create-article.dto';
+import { CreateArticleWithAuthorDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Article } from './entities/article.entity';
 import { Model } from 'mongoose';
 import { publicUser } from '../../common/selectors/user.selectors';
+import { ArticleQueriesDto } from './dto/queries-article.dto';
+import { Pagination } from 'src/common/types';
 
 @Injectable()
 export class ArticlesService {
@@ -12,7 +14,7 @@ export class ArticlesService {
     @InjectModel(Article.name) private readonly articleModel: Model<Article>,
   ) {}
 
-  async create(createArticleDto: CreateArticleDto) {
+  async create(createArticleDto: CreateArticleWithAuthorDto) {
     try {
       const newArticle = await this.articleModel.create({
         ...createArticleDto,
@@ -24,17 +26,32 @@ export class ArticlesService {
     }
   }
 
-  async findAll() {
+  async findAll(queries: ArticleQueriesDto): Promise<Pagination<Article>> {
     try {
-      const articles = await this.articleModel.find();
+      const articles = await this.articleModel
+        .find()
+        .populate('author', publicUser)
+        .sort({
+          createdAt: queries.orderByCreatedAt,
+          updatedAt: queries.orderByUpdatedAt,
+        })
+        .limit(queries.limit * 1)
+        .skip((queries.page - 1) * queries.limit);
+     
 
-      return articles;
+      const totalPages = await this.articleModel.countDocuments();
+
+      return {
+        totalPages: Math.ceil(totalPages / queries.limit),
+        currentPage: queries.page,
+        data: articles,
+      };
     } catch (error) {
       throw error;
     }
   }
 
-  async findOneById(id: string) {
+  async findOneById(id: string): Promise<Article> {
     try {
       const article = await this.articleModel
         .findById(id)
@@ -46,11 +63,16 @@ export class ArticlesService {
     }
   }
 
-  async updateOneById(id: string, updateArticleDto: UpdateArticleDto) {
+  async updateOneById(
+    id: string,
+    updateArticleDto: UpdateArticleDto,
+  ): Promise<Article> {
     try {
-      const newArticle = await this.articleModel.findByIdAndUpdate(id, {
-        ...updateArticleDto,
-      });
+      const newArticle = await this.articleModel.findByIdAndUpdate(
+        id,
+        updateArticleDto,
+        { new: true },
+      );
 
       return newArticle;
     } catch (error) {
