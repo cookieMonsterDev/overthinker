@@ -1,15 +1,11 @@
-'use client'
-import { useState } from 'react'
-import MDEditor from "@uiw/react-md-editor";
+import { CreateArticleForm } from "@/components/Forms";
 
-const NewArticle = () => {
-  const [value, setValue] = useState<string>('')
-
+const NewArticle = async () => {
   return (
-    <div data-color-mode="light">
-       <MDEditor height={600} value={value} onChange={(e) => e && setValue(e)} />
-    </div>
-  )
-}
+    <main>
+      <CreateArticleForm />
+    </main>
+  );
+};
 
-export default NewArticle
+export default NewArticle;

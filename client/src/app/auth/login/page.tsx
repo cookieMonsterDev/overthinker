@@ -5,7 +5,7 @@ import { SvgIcon } from "@/components/SvgIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { IconsEnum } from "@/common/constants";
-import LoginForm from "@/components/Forms/Login/Login.form";
+import { LoginForm } from "@/components/Forms";
 
 const LoginPage = () => {
   const router = useRouter();

@@ -8,7 +8,7 @@ import { initialValues, validationSchema } from "./validationSchema";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-const LoginForm = () => {
+export const LoginForm = () => {
   const [isPasswordVisible, setPasswordVisible] = useState({
     type: "password",
     icon: IconsEnum.visibilityoff,
@@ -90,4 +90,3 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
