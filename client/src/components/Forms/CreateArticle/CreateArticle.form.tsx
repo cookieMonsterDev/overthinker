@@ -6,8 +6,9 @@ import { initialValues, validationSchema } from "./validationSchema";
 import { Button } from "@/components/Button";
 import { TextInput } from "@/components/TextInput";
 import styles from "./CreateArticle.module.scss";
-import { createArticle } from "@/lib/services";
+
 import { useRouter } from "next/navigation";
+import { createArticleService } from "@/lib/axios/services";
 
 export const CreateArticleForm = () => {
   const [isLoading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ export const CreateArticleForm = () => {
     onSubmit: async (body) => {
       try {
         setLoading(true);
-        const articleId = await createArticle({
+        const articleId = await createArticleService({
           body,
           token: session?.user.token || "",
         });
@@ -31,7 +32,7 @@ export const CreateArticleForm = () => {
           router.push(`articles/${articleId}`);
         }
       } catch (error) {
-        throw error;
+        console.error(error);
       } finally {
         setLoading(false);
       }

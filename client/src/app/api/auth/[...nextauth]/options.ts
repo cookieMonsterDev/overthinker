@@ -1,9 +1,11 @@
-import { Api } from "@/lib/axios";
+import { Api } from "@/lib/axios/config";
 import { Me } from "@/types/me.type";
 import { isAxiosError } from "axios";
 import { NextAuthOptions } from "next-auth";
 import jwt from "jsonwebtoken";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { loginUserServise } from "@/lib/axios/services";
+import { errorToast } from "@/common/toastNotifications";
 
 const options: NextAuthOptions = {
   providers: [
@@ -23,8 +25,9 @@ const options: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const { data } = await Api.post("/auth/login", {
-            ...credentials,
+          const data = await loginUserServise({
+            email: credentials?.email!,
+            password: credentials?.password!,
           });
 
           return data;
@@ -49,8 +52,8 @@ const options: NextAuthOptions = {
       const user = token.user as Me;
       const theToken = token.token as string;
       const decodedToken = jwt.decode(theToken) as any;
-      session.user = { ...user, token: theToken};
-      session.expires = new Date(decodedToken.exp * 1000).toISOString()
+      session.user = { ...user, token: theToken };
+      session.expires = new Date(decodedToken.exp * 1000).toISOString();
       return session;
     },
   },

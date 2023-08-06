@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { errorToast } from "@/common/toastNotifications";
 
 export const LoginForm = () => {
   const [isPasswordVisible, setPasswordVisible] = useState({
@@ -36,16 +37,16 @@ export const LoginForm = () => {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const signInResponse = await signIn("credentials", {
+        const res = await signIn("credentials", {
           ...values,
           redirect: false,
         });
 
-        if (signInResponse?.error) {
-          setError(signInResponse.error);
+        if (res?.error) {
+          errorToast(res.error);
         }
 
-        if (!signInResponse?.error) {
+        if (!res?.error) {
           router.push("/");
         }
       } catch (error) {
@@ -77,7 +78,6 @@ export const LoginForm = () => {
         onChange={formik.handleChange}
         error={formik.errors.password}
       />
-      {error && <span className={styles.error_message}>{error}</span>}
       <Button
         className={styles.login_button}
         variant="default"
@@ -89,4 +89,3 @@ export const LoginForm = () => {
     </form>
   );
 };
-

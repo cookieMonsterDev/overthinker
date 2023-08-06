@@ -1,7 +1,7 @@
-import { findArticleById } from "@/lib/services";
+import { findArticleByIdService } from "@/lib/axios/services";
 
 const Article = async ({ params }: { params: { articleId: string } }) => {
-  const data = await findArticleById(params.articleId);
+  const data = await findArticleByIdService(params.articleId);
 
   return <main>{JSON.stringify(data)}</main>;
 };
