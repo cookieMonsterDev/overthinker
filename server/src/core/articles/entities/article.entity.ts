@@ -12,11 +12,6 @@ export class Article extends Document {
   @Prop({
     required: true,
   })
-  description: string;
-
-  @Prop({
-    required: true,
-  })
   content: string;
 
   @Prop({

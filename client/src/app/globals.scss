@@ -37,6 +37,10 @@ dialog {
 }
 
 main {
-  padding: 0 20rem;
+  padding: 0 15rem;
   min-height: calc(100vh - 4rem - 4.3rem);
+
+  @media only screen and (max-width: 64rem) {
+    padding: 0 3rem;
+  }
 }

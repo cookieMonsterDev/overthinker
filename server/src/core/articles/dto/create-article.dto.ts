@@ -7,10 +7,6 @@ export class CreateArticleDto {
 
   @IsString()
   @IsNotEmpty()
-  description: string;
-
-  @IsString()
-  @IsNotEmpty()
   content: string;
 
   @IsOptional()

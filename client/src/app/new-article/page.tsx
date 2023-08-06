@@ -1,6 +1,7 @@
+'use client'
 import { CreateArticleForm } from "@/components/Forms";
 
-const NewArticle = async () => {
+const NewArticle = () => {
   return (
     <main>
       <CreateArticleForm />
