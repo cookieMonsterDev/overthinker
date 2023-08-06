@@ -1,5 +1,4 @@
 import { useState } from "react";
-import MDEditor from "@uiw/react-md-editor";
 import { useSession } from "next-auth/react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
@@ -9,6 +8,7 @@ import styles from "./CreateArticle.module.scss";
 
 import { useRouter } from "next/navigation";
 import { createArticleService } from "@/lib/axios/services";
+import { MarkDownEditor } from "@/components/MarkDownEditor";
 
 export const CreateArticleForm = () => {
   const [isLoading, setLoading] = useState(false);
@@ -35,6 +35,7 @@ export const CreateArticleForm = () => {
         console.error(error);
       } finally {
         setLoading(false);
+        formik.resetForm();
       }
     },
   });
@@ -53,12 +54,14 @@ export const CreateArticleForm = () => {
         value={formik.values.title}
         error={formik.errors.title}
         onChange={formik.handleChange}
+        withAnimation={false}
       />
       <div data-color-mode="light" className={styles.editor}>
-        <MDEditor
+        <MarkDownEditor
           value={formik.values.content}
           onChange={handleChange}
           height={"calc(100vh - 4rem - 4.3rem - 13rem)"}
+          error={formik.errors.content}
         />
       </div>
       <Button

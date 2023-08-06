@@ -16,8 +16,11 @@
   }
 
   &_error::before {
-    animation: 300ms horizontal-shaking;
     background-color: var(--error); 
+
+    &_with_animation {
+      animation: 300ms horizontal-shaking;
+    }
   }
 }
 

@@ -10,6 +10,7 @@ export interface InputProps {
   error?: string;
   className?: string;
   style?: React.CSSProperties;
+  withAnimation?: boolean;
   icon?: IconsEnum | string;
   iconClassName?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;

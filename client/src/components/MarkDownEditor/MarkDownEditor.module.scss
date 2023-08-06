@@ -1,0 +1,22 @@
+.editor {
+  position: relative;
+
+  &_error {
+    border-radius: 2px;
+    border: 2px solid var(--error);
+    outline: 2px solid var(--error);
+  }
+}
+
+.error {
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: absolute;
+  bottom: -1.7rem;
+  left: 0.6rem;
+  color: var(--error);
+  font-size: 1.1rem;
+}
