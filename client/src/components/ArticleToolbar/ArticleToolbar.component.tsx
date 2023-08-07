@@ -5,14 +5,18 @@ import { ArticleToolbarProps } from "./ArticleToolbar.types";
 import { SvgIcon } from "../SvgIcon";
 import { IconsEnum } from "@/common/constants";
 import { Tooltip } from "react-tooltip";
+import cn from 'classnames'
 
 export const ArticleToolbarComponent: React.FC<ArticleToolbarProps> = ({
   likes,
   comments,
   bookmark = false,
+  className
 }) => {
+  const cont = cn(styles.container, className)
+
   return (
-    <div className={styles.container}>
+    <div className={cont}>
       <section className={styles.left_container}>
         <span
           data-tooltip-id="article-toolbar-tooltip"

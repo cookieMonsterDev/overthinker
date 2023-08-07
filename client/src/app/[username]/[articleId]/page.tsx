@@ -11,15 +11,19 @@ interface ArticlePageProps {
 const ArticlePage = async ({ params }: ArticlePageProps) => {
   const article = await findArticleByIdService(params.articleId);
 
-  console.log(article.author)
-
   return (
     <main>
       <article className={styles.article}>
         <h1 className={styles.title}>{article.title}</h1>
-        <ArticleInfo />
-        <ArticleToolbar likes={0} />
+        <ArticleInfo
+          username={article.author.username}
+          avatarUrl={article.author.avatarUrl}
+          createdAt={article.createdAt}
+          updatedAt={article.updatedAt}
+        />
+        <ArticleToolbar likes={999} comments={999} />
         <MarkDownPreview source={article.content} className={styles.content} />
+        <ArticleToolbar likes={999} comments={999} className={styles.bottom_toolbar}/>
       </article>
     </main>
   );

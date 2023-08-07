@@ -1,5 +1,6 @@
 export interface ArticleInfoProps {
-  avatarUrl?: string;
+  avatarUrl: string | null;
   username: string;
   createdAt: Date;
+  updatedAt: Date;
 }
