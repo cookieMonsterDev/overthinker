@@ -19,13 +19,11 @@ export const TextInputComponent: React.FC<InputProps> = ({
   iconClassName,
   withAnimation = true,
 }) => {
-  console.log(withAnimation && error)
-
   const contClass = cn(
     styles.container,
     {
       [styles[`container_error`]]: error,
-      [styles['container_error_with_animation']]: withAnimation
+      [styles["container_error_with_animation"]]: withAnimation,
     },
     className
   );

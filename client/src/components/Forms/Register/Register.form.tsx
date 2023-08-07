@@ -1,16 +1,15 @@
-"use client";
+'use client'
 import { useState } from "react";
 import { TextInput } from "../../TextInput";
 import { IconsEnum } from "@/common/constants";
 import { Button } from "@/components/Button";
-import styles from "./Login.module.scss";
+import styles from "./Register.module.scss";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { errorToast } from "@/common/toastNotifications";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const [isPasswordVisible, setPasswordVisible] = useState({
     type: "password",
     icon: IconsEnum.visibilityoff,
@@ -35,30 +34,20 @@ export const LoginForm = () => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: async (values) => {
-      try {
-        setLoading(true);
-        const res = await signIn("credentials", {
-          ...values,
-          redirect: false,
-        });
-
-        if (res?.error) {
-          errorToast(res.error);
-        }
-
-        if (!res?.error) {
-          router.push("/");
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
+      console.log(values);
     },
   });
 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
+      <TextInput
+        placeholder="Username"
+        name="username"
+        id="username"
+        value={formik.values.username}
+        onChange={formik.handleChange}
+        error={formik.errors.username}
+      />
       <TextInput
         placeholder="Email"
         name="email"
@@ -79,12 +68,12 @@ export const LoginForm = () => {
         error={formik.errors.password}
       />
       <Button
-        className={styles.login_button}
+        className={styles.register_button}
         variant="default"
         type="submit"
         isLoading={isLoading}
       >
-        Sign in
+        Sign up
       </Button>
     </form>
   );

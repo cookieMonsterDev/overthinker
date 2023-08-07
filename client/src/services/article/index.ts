@@ -1,16 +1,7 @@
-import { Api } from "./config";
-import errorHandler from "./errorHandler";
-import { CreateArticleServisePayload, loginUserServisePayload } from "./types";
+import { Api } from "@/lib/axios";
+import { CreateArticleServisePayload } from "./types";
+import errorHandler from "../errorHandler";
 
-export const loginUserServise = async (payload: loginUserServisePayload) => {
-  try {
-    const { data } = await Api.post("/auth/login", payload);
-
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
 
 export const createArticleService = async (
   payload: CreateArticleServisePayload

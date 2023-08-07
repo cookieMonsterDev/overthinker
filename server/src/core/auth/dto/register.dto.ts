@@ -14,6 +14,10 @@ import { UserRoles } from '../types/roles';
 export class RegisterDto {
   @IsNotEmpty()
   @IsString()
+  username: string;
+
+  @IsNotEmpty()
+  @IsString()
   @IsEmail()
   email: string;
 

@@ -5,10 +5,9 @@ import { initialValues, validationSchema } from "./validationSchema";
 import { Button } from "@/components/Button";
 import { TextInput } from "@/components/TextInput";
 import styles from "./CreateArticle.module.scss";
-
 import { useRouter } from "next/navigation";
-import { createArticleService } from "@/lib/axios/services";
 import { MarkDownEditor } from "@/components/MarkDownEditor";
+import { createArticleService } from "@/services/article";
 
 export const CreateArticleForm = () => {
   const [isLoading, setLoading] = useState(false);
