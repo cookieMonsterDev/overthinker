@@ -7,7 +7,11 @@ export enum IconsEnum {
   visibilityoff = '/icons/visibilityoff.svg',
   downArrow = '/icons/downArrow.svg',
   profile = '/icons/profile.svg',
-  bookmarks = '/icons/bookmarks.svg'
+  bookmarks = '/icons/bookmarks.svg',
+  bookmarkOff = '/icons/bookmarkOff.svg',
+  bookmarkOn = '/icons/bookmarkOn.svg',
+  comments = '/icons/comments.svg',
+  like = '/icons/like.svg'
 }
 
 export enum ImagesEnum {

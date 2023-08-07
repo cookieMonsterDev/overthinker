@@ -1,5 +1,5 @@
 import { Api } from "@/lib/axios";
-import { CreateArticleServisePayload } from "./types";
+import { ArticleResponse, CreateArticleServisePayload } from "./types";
 import { toastNotificationErrorHandler } from "../errorHandler";
 
 export const createArticleService = async (
@@ -21,7 +21,7 @@ export const createArticleService = async (
 
 export const findArticleByIdService = async (
   articleId: string
-): Promise<any> => {
+): Promise<ArticleResponse> => {
   try {
     const { data } = await Api.get(`/articles/${articleId}`);
 
