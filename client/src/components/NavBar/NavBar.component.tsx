@@ -5,12 +5,12 @@ import Link from "next/link";
 import { Search } from "../Search";
 import { Button } from "../Button";
 import { IconsEnum } from "@/common/constants";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { UserMenu } from "../UserMenu";
 
 export const NavBarComponent: React.FC<NavBarProps> = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <nav className={styles.container}>
@@ -45,7 +45,6 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
             </Link>
           </>
         )}
-        {session && <Button onClick={() => signOut()}>Sign out</Button>}
         <UserMenu />
       </div>
     </nav>

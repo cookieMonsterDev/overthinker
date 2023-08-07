@@ -20,7 +20,7 @@ export class MongoExceptionFilter extends BaseExceptionFilter {
           statusCode: HttpStatus.CONFLICT,
           message: [
             ...Object.entries(exception['keyValue']).map(
-              (e) => `${e[0]} '${e[1]}' is already taken`,
+              (e) => `${e[0]} is already taken`,
             ),
           ],
           error: 'Conflict',

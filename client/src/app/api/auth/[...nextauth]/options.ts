@@ -1,10 +1,8 @@
-
-import { Me } from "@/types/me.type";
 import { isAxiosError } from "axios";
 import { NextAuthOptions } from "next-auth";
-import jwt from "jsonwebtoken";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginUserServise } from "@/services/auth";
+import { PrivateUser } from "@/services/auth/types";
 
 const options: NextAuthOptions = {
   providers: [
@@ -29,7 +27,7 @@ const options: NextAuthOptions = {
             password: credentials?.password!,
           });
 
-          return data;
+          return data as any;
         } catch (error) {
           if (isAxiosError(error)) {
             throw new Error(error.response?.data.message);
@@ -48,11 +46,12 @@ const options: NextAuthOptions = {
       return { ...user, ...token };
     },
     async session({ session, token }) {
-      const user = token.user as Me;
+      const user = token.user as PrivateUser;
       const theToken = token.token as string;
-      const decodedToken = jwt.decode(theToken) as any;
       session.user = { ...user, token: theToken };
-      session.expires = new Date(decodedToken.exp * 1000).toISOString();
+      session.expires = new Date(
+        new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+      ).toISOString();
       return session;
     },
   },

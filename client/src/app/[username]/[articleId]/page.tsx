@@ -1,4 +1,4 @@
-import { findArticleByIdService } from "@/lib/axios/services";
+import { findArticleByIdService } from "@/services";
 
 interface ArticlePageProps {
   params: { articleId: string };

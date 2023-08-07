@@ -8,6 +8,7 @@ import styles from "./CreateArticle.module.scss";
 import { useRouter } from "next/navigation";
 import { MarkDownEditor } from "@/components/MarkDownEditor";
 import { createArticleService } from "@/services/article";
+import { successToast } from "@/common/toastNotifications";
 
 export const CreateArticleForm = () => {
   const [isLoading, setLoading] = useState(false);
@@ -28,7 +29,8 @@ export const CreateArticleForm = () => {
         });
 
         if (articleId) {
-          router.push(`articles/${articleId}`);
+          successToast("Article is published!")
+          router.push(`${session?.user.username}/${articleId}`);
         }
       } catch (error) {
         console.error(error);

@@ -8,7 +8,6 @@ import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { errorToast } from "@/common/toastNotifications";
 
 export const LoginForm = () => {
   const [isPasswordVisible, setPasswordVisible] = useState({
@@ -43,7 +42,7 @@ export const LoginForm = () => {
         });
 
         if (res?.error) {
-          errorToast(res.error);
+          formik.setErrors({ email: res.error, password: res.error });
         }
 
         if (!res?.error) {

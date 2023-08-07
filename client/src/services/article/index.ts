@@ -1,7 +1,6 @@
 import { Api } from "@/lib/axios";
 import { CreateArticleServisePayload } from "./types";
-import errorHandler from "../errorHandler";
-
+import { toastNotificationErrorHandler } from "../errorHandler";
 
 export const createArticleService = async (
   payload: CreateArticleServisePayload
@@ -15,7 +14,7 @@ export const createArticleService = async (
 
     return data._id;
   } catch (error) {
-    errorHandler(error);
+    toastNotificationErrorHandler(error);
     throw error;
   }
 };
@@ -28,7 +27,7 @@ export const findArticleByIdService = async (
 
     return data;
   } catch (error) {
-    errorHandler(error);
+    toastNotificationErrorHandler(error);
     throw error;
   }
 };
