@@ -6,11 +6,13 @@ import { User } from 'src/core/users/entities/user.entity';
 export class Article extends Document {
   @Prop({
     required: true,
+    index: true
   })
   title: string;
 
   @Prop({
     required: true,
+    index: true
   })
   content: string;
 
