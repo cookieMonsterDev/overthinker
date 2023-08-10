@@ -7,11 +7,13 @@ import { Model } from 'mongoose';
 import { publicUser } from '../../common/selectors/user.selectors';
 import { ArticleQueriesDto } from './dto/queries-article.dto';
 import { Pagination } from 'src/common/types';
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class ArticlesService {
   constructor(
     @InjectModel(Article.name) private readonly articleModel: Model<Article>,
+    @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
   async create(createArticleDto: CreateArticleWithAuthorDto) {
@@ -28,8 +30,17 @@ export class ArticlesService {
 
   async findAll(queries: ArticleQueriesDto): Promise<Pagination<Article>> {
     try {
+      let query = {};
+
+      if (queries.author) {
+        const { _id } = await this.userModel.findOne({
+          username: queries.author,
+        });
+        query = { author: _id };
+      }
+
       const articles = await this.articleModel
-        .find()
+        .find({ ...query })
         .populate('author', publicUser)
         .sort({
           createdAt: queries.orderByCreatedAt,
