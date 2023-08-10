@@ -7,13 +7,11 @@ import { Model } from 'mongoose';
 import { publicUser } from '../../common/selectors/user.selectors';
 import { ArticleQueriesDto } from './dto/queries-article.dto';
 import { Pagination } from 'src/common/types';
-import { ElasticSearchService } from '../elasticsearch/elasticsearch.service';
 
 @Injectable()
 export class ArticlesService {
   constructor(
     @InjectModel(Article.name) private readonly articleModel: Model<Article>,
-    private readonly elasticSearchService: ElasticSearchService,
   ) {}
 
   async create(createArticleDto: CreateArticleWithAuthorDto) {
@@ -21,15 +19,6 @@ export class ArticlesService {
       const newArticle = await this.articleModel.create({
         ...createArticleDto,
       });
-
-      // await this.elasticSearchService.indexDocument(
-      //   'articles',
-      //   newArticle._id.toString(),
-      //   {
-      //     title: newArticle.title,
-      //     content: newArticle.content,
-      //   },
-      // );
 
       return newArticle;
     } catch (error) {
@@ -84,20 +73,6 @@ export class ArticlesService {
         { new: true },
       );
 
-      // await this.elasticSearchService.removeDocument(
-      //   'articles',
-      //   newArticle._id.toString(),
-      // );
-
-      // await this.elasticSearchService.indexDocument(
-      //   'articles',
-      //   newArticle._id.toString(),
-      //   {
-      //     title: newArticle.title,
-      //     content: newArticle.content,
-      //   },
-      // );
-
       return newArticle;
     } catch (error) {
       throw error;
@@ -106,12 +81,7 @@ export class ArticlesService {
 
   async removeOneById(id: string): Promise<void> {
     try {
-      const { _id } = await this.articleModel.findByIdAndRemove(id);
-
-      // await this.elasticSearchService.removeDocument(
-      //   'articles',
-      //   _id.toString(),
-      // );
+      await this.articleModel.findByIdAndRemove(id);
 
       return;
     } catch (error) {
