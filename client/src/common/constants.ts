@@ -11,7 +11,8 @@ export enum IconsEnum {
   bookmarkOff = '/icons/bookmarkOff.svg',
   bookmarkOn = '/icons/bookmarkOn.svg',
   comments = '/icons/comments.svg',
-  like = '/icons/like.svg'
+  like = '/icons/like.svg',
+  article = '/icons/article.svg'
 }
 
 export enum ImagesEnum {
