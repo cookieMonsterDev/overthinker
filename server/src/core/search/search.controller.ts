@@ -7,6 +7,6 @@ export class SearchController {
 
   @Get()
   search(@Query('q') query: string) {
-    return this.searchService.search(query);
+    return this.searchService.flexSearch(query)
   }
 }

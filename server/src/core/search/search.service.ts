@@ -4,11 +4,7 @@ import { Article } from '../articles/entities/article.entity';
 import { Model } from 'mongoose';
 import { User } from '../users/entities/user.entity';
 import { publicUser } from 'src/common/selectors';
-
-interface SearchResponse {
-  users: User[];
-  articles: Article[];
-}
+import { SearchResponse } from './types/search-response.type';
 
 @Injectable()
 export class SearchService {
@@ -17,7 +13,7 @@ export class SearchService {
     @InjectModel(User.name) private readonly usersModel: Model<User>,
   ) {}
 
-  async search(query: string): Promise<SearchResponse> {
+  async flexSearch(query: string): Promise<SearchResponse> {
     try {
       if (query.length < 3) return null;
 
