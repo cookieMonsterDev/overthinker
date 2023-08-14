@@ -12,6 +12,7 @@ export const ArticleCardComponent: React.FC<ArticleResponse> = (props) => {
         href={`/${props.author.username}`}
         className={styles.author}
         aria-label="user page"
+        title={`${props.author.username}`}
       >
         <Image
           src={props.author.avatarUrl || ImagesEnum.user}

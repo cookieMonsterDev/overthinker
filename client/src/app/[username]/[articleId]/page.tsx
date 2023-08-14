@@ -33,7 +33,9 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
   return (
     <main>
       <article className={styles.article}>
-        <h1 className={styles.title}>{article.title}</h1>
+        <h1 className={styles.title} title={article.title}>
+          {article.title}
+        </h1>
         <ArticleInfo
           username={article.author.username}
           avatarUrl={article.author.avatarUrl}
