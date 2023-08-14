@@ -3,10 +3,29 @@ import { findArticleByIdService } from "@/services";
 import styles from "./ArticlePage.module.scss";
 import { ArticleToolbar } from "@/components/ArticleToolbar";
 import { ArticleInfo } from "@/components/ArticleInfo";
+import { Metadata } from "next";
+import { dateTimeFormater } from "@/utils/dateTimeFormater";
 
 interface ArticlePageProps {
-  params: { articleId: string };
+  params: { articleId: string; username: string };
 }
+
+export const generateMetadata = async ({
+  params,
+}: ArticlePageProps): Promise<Metadata> => {
+  const article = await findArticleByIdService(params.articleId);
+
+  return {
+    title: `${article.title} -  ${dateTimeFormater(
+      new Date(article.createdAt)
+    )} - ${params.username} - OverThinker`,
+    description: `${article.content.slice(0, 250)}`,
+    openGraph: {
+      title: `${params.username} - OverThinker`,
+      description: `${article.content.slice(0, 250)}`,
+    },
+  };
+};
 
 const ArticlePage = async ({ params }: ArticlePageProps) => {
   const article = await findArticleByIdService(params.articleId);
@@ -23,7 +42,11 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
         />
         <ArticleToolbar likes={999} comments={999} />
         <MarkDownPreview source={article.content} className={styles.content} />
-        <ArticleToolbar likes={999} comments={999} className={styles.bottom_toolbar}/>
+        <ArticleToolbar
+          likes={999}
+          comments={999}
+          className={styles.bottom_toolbar}
+        />
       </article>
     </main>
   );

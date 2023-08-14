@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { privateUser, publicUser } from 'src/common/selectors';
 import { UserQueriesDto } from './dto/queries-user.dto';
 import { Pagination } from 'src/common/types';
+import { query } from 'express';
 
 @Injectable()
 export class UsersService {
@@ -13,8 +14,16 @@ export class UsersService {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
 
-  async findAll(queries: UserQueriesDto): Promise<Pagination<User>> {
+  async findAll(queries: UserQueriesDto): Promise<Pagination<User> | User> {
     try {
+      if (queries.username) {
+        const user = await this.userModel
+          .findOne({ username: queries.username })
+          .select(publicUser);
+
+        return user;
+      }
+
       const users = await this.userModel
         .find()
         .select(publicUser)

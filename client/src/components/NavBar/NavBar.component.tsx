@@ -15,13 +15,17 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
   return (
     <nav className={styles.container}>
       <div className={styles.subcontainer_left}>
-        <Link href="/" className={styles.title}>
+        <Link href="/" className={styles.title} aria-label="home page">
           OverThinker
         </Link>
         <Search />
       </div>
       <div className={styles.subcontainer_right}>
-        <Link href="/new-article" className={styles.write_button_container}>
+        <Link
+          href="/new-article"
+          className={styles.write_button_container}
+          aria-label="new article page"
+        >
           <Image
             src={IconsEnum.write}
             width={34}
@@ -33,12 +37,12 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
         </Link>
         {!session && (
           <>
-            <Link href="/auth/register">
+            <Link href="/auth/register" aria-label="registration page">
               <Button className={styles.button} variant="success">
                 Sign up
               </Button>
             </Link>
-            <Link href="/auth/login">
+            <Link href="/auth/login" aria-label="login page">
               <Button className={styles.button} variant="text">
                 Sign in
               </Button>

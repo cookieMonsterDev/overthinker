@@ -5,7 +5,6 @@ import styles from "./UserMenu.module.scss";
 import { IconsEnum, ImagesEnum } from "@/common/constants";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
 import Link from "next/link";
-import { Button } from "../Button";
 import { SvgIcon } from "../SvgIcon";
 
 export const UserMenuComponent = () => {
@@ -39,7 +38,7 @@ export const UserMenuComponent = () => {
         />
       </div>
       {isOpen && (
-        <div className={styles.menu} ref={ref}>
+        <div className={styles.menu} ref={ref} aria-hidden={isOpen}>
           {!session ? (
             <>
               <div className={styles.auth_section}>
@@ -55,7 +54,7 @@ export const UserMenuComponent = () => {
             </>
           ) : (
             <>
-              <div className={styles.auth_list}>
+              <div className={styles.auth_list} aria-hidden={isOpen}>
                 <Link href="/profile">
                   <SvgIcon src={IconsEnum.profile} size={32} />
                   <span>Profile</span>
