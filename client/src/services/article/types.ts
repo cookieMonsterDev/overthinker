@@ -1,3 +1,4 @@
+import { Order } from "@/types/order.type";
 import { PublicUser } from "../user/types";
 
 export interface ArticleBody {
@@ -19,4 +20,12 @@ export interface ArticleResponse {
   createdAt: Date;
   updatedAt: Date;
   __v: number;
+}
+
+export interface FindArticlesPayload {
+  author: string;
+  orderByCreatedAt: Order;
+  orderByUpdatedAt: Order;
+  page: number;
+  limit: number;
 }

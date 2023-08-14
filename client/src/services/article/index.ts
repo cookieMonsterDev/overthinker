@@ -1,6 +1,11 @@
 import { Api } from "@/lib/axios";
-import { ArticleResponse, CreateArticleServisePayload } from "./types";
+import {
+  ArticleResponse,
+  CreateArticleServisePayload,
+  FindArticlesPayload,
+} from "./types";
 import { toastNotificationErrorHandler } from "../errorHandler";
+import { Pagination } from "@/types/pagination.type";
 
 export const createArticleService = async (
   payload: CreateArticleServisePayload
@@ -28,6 +33,19 @@ export const findArticleByIdService = async (
     return data;
   } catch (error) {
     toastNotificationErrorHandler(error);
+    throw error;
+  }
+};
+
+export const findArtilcesService = async (
+  query: string = ''
+): Promise<Pagination<ArticleResponse>> => {
+  try {
+    const { data } = await Api.get(`/articles${query}`);
+
+    return data;
+  } catch (error) {
+    // toastNotificationErrorHandler(error);
     throw error;
   }
 };
