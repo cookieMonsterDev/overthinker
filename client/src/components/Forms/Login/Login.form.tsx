@@ -6,10 +6,11 @@ import { Button } from "@/components/Button";
 import styles from "./Login.module.scss";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
+  const { update } = useSession();
   const [isPasswordVisible, setPasswordVisible] = useState({
     type: "password",
     icon: IconsEnum.visibilityoff,
@@ -46,7 +47,8 @@ export const LoginForm = () => {
         }
 
         if (!res?.error) {
-          router.push("/");
+          update()
+          router.push("/",);
         }
       } catch (error) {
         console.error(error);

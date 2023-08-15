@@ -3,4 +3,6 @@ export interface PaginationProps {
   totalPages: number;
   leftFromCurrent?: number;
   rightFromCurrent?: number;
+  className?: string;
+  style?: React.CSSProperties;
 }

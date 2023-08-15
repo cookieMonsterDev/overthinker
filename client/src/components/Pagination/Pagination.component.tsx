@@ -1,12 +1,15 @@
 import { PaginationProps } from "./Pagination.types";
 import styles from "./Pagination.module.scss";
 import Link from "next/link";
+import cn from "classnames";
 
 export const PaginationComponent: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
   leftFromCurrent = 3,
   rightFromCurrent = 3,
+  className,
+  style,
 }) => {
   const start =
     currentPage - leftFromCurrent - 1 < 0
@@ -22,8 +25,10 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
     end
   );
 
+  const ctn = cn(styles.container, className);
+
   return (
-    <section className={styles.container}>
+    <section className={ctn} style={style}>
       <span
         className={styles.count}
       >{`Page ${currentPage} of ${totalPages}`}</span>

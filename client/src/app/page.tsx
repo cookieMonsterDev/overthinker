@@ -20,7 +20,6 @@ export default async function Home({ searchParams }: HomePageProps) {
 
   return (
     <main>
-      <h1></h1>
       <section className={styles.list}>
         {articles.data.map((e) => (
           <ArticleCard {...e} key={e._id} />

@@ -49,7 +49,7 @@ export class ArticlesService {
         .limit(queries.limit * 1)
         .skip((queries.page - 1) * queries.limit);
 
-      const totalPages = await this.articleModel.countDocuments();
+      const totalPages = await this.articleModel.countDocuments(query);
 
       return {
         totalPages: Math.ceil(totalPages / queries.limit),

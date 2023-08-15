@@ -24,7 +24,11 @@ export const ArticleInfoComponent: React.FC<ArticleInfoProps> = ({
         />
       </Link>
       <div className={styles.info}>
-        <Link href={`/${username}`} className={styles.username}>
+        <Link
+          href={`/${username}`}
+          className={styles.username}
+          aria-label={`${username} page`}
+        >
           @{username}
         </Link>
         <div className={styles.date}>

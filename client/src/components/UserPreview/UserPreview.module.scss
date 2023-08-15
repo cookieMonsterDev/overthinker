@@ -1,0 +1,27 @@
+.container {
+  max-width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+.info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap: 1rem;
+
+  h3 {
+    all: unset;
+    font-size: 2rem;
+    inline-size: 100%;
+    overflow-wrap: break-word;
+  }
+}

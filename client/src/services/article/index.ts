@@ -32,7 +32,6 @@ export const findArticleByIdService = async (
 
     return data;
   } catch (error) {
-    toastNotificationErrorHandler(error);
     throw error;
   }
 };
@@ -45,7 +44,6 @@ export const findArtilcesService = async (
 
     return data;
   } catch (error) {
-    // toastNotificationErrorHandler(error);
     throw error;
   }
 };
