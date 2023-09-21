@@ -1,6 +1,5 @@
 import React from "react";
 import { BlurOverlayProps } from "./BlurOverlay.types";
-import styles from "./BlurOverlay.module.scss";
 import Image from "next/image";
 import cn from "classnames";
 
@@ -14,9 +13,9 @@ export const BlurOverlayComponent: React.FC<BlurOverlayProps> = ({
   backgroundImage,
 }) => {
   const overlay = cn(
-    styles.overlay,
+    "min-h-screen min-w-full absolute inset-0 flex justify-center items-center",
     {
-      [styles[`overlay_blur`]]: blur,
+      "backdrop-blur-sm": blur,
     },
     className
   );
@@ -39,7 +38,7 @@ export const BlurOverlayComponent: React.FC<BlurOverlayProps> = ({
           src={backgroundImage!}
           alt="overlay"
           fill={true}
-          className={styles.bg_image}
+          className="absolute bg-center w-full h-full blur-sm"
         />
       )}
       {children}

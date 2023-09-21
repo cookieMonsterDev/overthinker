@@ -1,9 +1,8 @@
-export interface BlurOverlayProps {
+import { HTMLAttributes } from "react";
+
+export interface BlurOverlayProps extends HTMLAttributes<HTMLDivElement> {
   blur?: boolean;
-  background?: React.CSSProperties['background'];
+  background?: React.CSSProperties["background"];
   backgroundImage?: string;
   children: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: (e: any) => void;
 }

@@ -13,7 +13,7 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className={styles.container}>
+    <nav className="container h-18 px-6 flex justify-between border-b-border">
       <div className={styles.subcontainer_left}>
         <Link href="/" className={styles.title} aria-label="home page">
           OverThinker

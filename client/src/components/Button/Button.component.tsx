@@ -1,15 +1,11 @@
-'use client'
+"use client";
 import { ButtonProps } from "./Button.types";
 import cn from "classnames";
-import styles from "./Button.module.scss";
 import { SvgIcon } from "../SvgIcon";
 import { IconsEnum } from "@/common/constants";
 
 export const ButtonComponent: React.FC<ButtonProps> = ({
   className,
-  style,
-  type = "button",
-  role = "button",
   onClick,
   children,
   variant = "text",
@@ -17,12 +13,19 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   disabled = false,
   loaderSize = 40,
   loaderColor,
+  ...rest
 }) => {
   const buttonClass = cn(
-    styles.button,
+    "relative items-center justify-center inline-flex px-4 py-2 cursor-pointer disabled:cursor-not-allowed disabled:pointer-events-none duration-300 rounded-3xl",
     {
-      [styles[`button_variant_${variant}`]]: variant,
-      [styles.disabled]: disabled,
+      "bg-primary text-secondary": variant === "default",
+      "bg-success text-secondary hover:bg-dark_success active:bg-dark_success":
+        variant === "success",
+      "bg-error text-secondary hover:bg-dark_error active:bg-dark_error":
+        variant === "error",
+      "bg-transparent border border-primary hover:bg-ultra_light_primary active:bg-ultra_light_primary":
+        variant === "outlined",
+      "bg-transparent text-primary": variant === "text",
     },
     className
   );
@@ -32,18 +35,16 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   return isLoading ? (
     <SvgIcon
       src={IconsEnum.loader}
-      className={styles.loader}
+      className="animate-spin"
       size={loaderSize}
       color={loaderColor}
     />
   ) : (
     <button
       className={buttonClass}
-      style={style}
-      type={type}
-      role={role}
       onClick={handleClick}
       disabled={disabled}
+      {...rest}
     >
       {children}
     </button>

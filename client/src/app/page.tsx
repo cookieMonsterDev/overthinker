@@ -1,7 +1,6 @@
 import { findArtilcesService } from "@/services";
 import { Order } from "@/types/order.type";
 import { objectToQueryString } from "@/utils/objectToQueryString";
-import styles from "./home.module.scss";
 import { Pagination } from "@/components/Pagination";
 import { ArticleCard } from "@/components/ArticleCard";
 
@@ -19,8 +18,8 @@ export default async function Home({ searchParams }: HomePageProps) {
   const articles = await findArtilcesService(query);
 
   return (
-    <main>
-      <section className={styles.list}>
+    <main className="container py-8 flex flex-col gap-4 min-h-[calc(100vh - )]">
+      <section>
         {articles.data.map((e) => (
           <ArticleCard {...e} key={e._id} />
         ))}
