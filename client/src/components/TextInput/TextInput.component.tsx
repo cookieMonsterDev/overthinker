@@ -1,5 +1,4 @@
 import { InputProps } from "./TextInput.types";
-import styles from "./TextInput.module.scss";
 import cn from "classnames";
 import { SvgIcon } from "../SvgIcon";
 
@@ -20,40 +19,49 @@ export const TextInputComponent: React.FC<InputProps> = ({
   withAnimation = true,
 }) => {
   const contClass = cn(
-    styles.container,
+    "relative flex w-full my-4 p-2 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:bg-black",
     {
-      [styles[`container_error`]]: error,
-      [styles["container_error_with_animation"]]: withAnimation,
+      "before:bg-error": Boolean(error),
+      "before:bg-error before:animate-horizontal-shaking":
+        Boolean(error) && withAnimation,
     },
     className
   );
 
-  const inputClass = cn(styles.input, {
-    [styles[`input_error`]]: withAnimation && Boolean(error),
-    [styles[`input_withIcon`]]: icon,
+  const inputClass = cn("w-full flex relative text-2xl outline-none", {
+    "animate-horizontal-shaking": withAnimation && Boolean(error),
+    "pr-8": icon,
   });
 
-  const iconClass = cn(styles.icon, iconClassName);
+  const iconClass = cn("absolute right-0 cursor-pointer", iconClassName);
 
   return (
     <div style={style} className={contClass}>
-      {label && <label className={styles.label}>{label}</label>}
+      {label && (
+        <label className="absolute top-[-1.1rem] text-[1.1rem] max-w-full block overflow-hidden text-ellipsis">
+          {label}
+        </label>
+      )}
       <input
-        className={inputClass}
         placeholder={placeholder}
         id={id}
         value={value}
         name={name}
         type={type}
         onChange={onChange}
+        className={inputClass}
       />
-      {error && <span className={styles.error}>{error}</span>}
+      {error && (
+        <span className="absolute bottom-[-1.6rem] text-error text-[1.1rem] max-w-full block overflow-hidden text-ellipsis">
+          {error}
+        </span>
+      )}
       {icon && (
         <SvgIcon
           src={icon}
-          className={iconClass}
           onClick={onIconClick}
           size={30}
+          className={iconClass}
         />
       )}
     </div>

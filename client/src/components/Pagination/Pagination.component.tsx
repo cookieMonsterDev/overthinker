@@ -1,5 +1,4 @@
 import { PaginationProps } from "./Pagination.types";
-import styles from "./Pagination.module.scss";
 import Link from "next/link";
 import cn from "classnames";
 
@@ -25,19 +24,17 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
     end
   );
 
-  const ctn = cn(styles.container, className);
+  const ctn = cn("p-4 flex justify-center items-center gap-4", className);
 
   return (
     <section className={ctn} style={style}>
-      <span
-        className={styles.count}
-      >{`Page ${currentPage} of ${totalPages}`}</span>
+      <span className="px-4 py-2 bg-ultra_light_primary text-light_primary font-semibold rounded-[0.5rem]">{`Page ${currentPage} of ${totalPages}`}</span>
       {currentPage !== 1 && (
         <>
           {!pages.includes(1) && (
             <Link
               href={{ query: { page: 1 } }}
-              className={styles.link_text}
+              className="px-4 py-2 font-semibold text-light_primary rounded-[0.5rem] duration-300 hover:bg-primary hover:text-secondary"
               aria-label="First page"
             >
               « First
@@ -47,7 +44,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
             href={{
               query: { page: currentPage - 1 },
             }}
-            className={styles.link_one_step}
+            className="px-4 py-2 bg-ultra_light_primary text-light_primary font-semibold rounded-[0.5rem] duration-300 hover:bg-primary hover:text-secondary"
             aria-label="Previous page"
           >
             «
@@ -61,7 +58,9 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
           }}
           key={e}
           className={
-            currentPage === e ? styles.link_current : styles.link_number
+            currentPage === e
+              ? "cursor-default px-4 py-2 bg-ultra_light_primary text-light_primary font-semibold rounded-[0.5rem]"
+              : "px-4 py-2 text-light_primary font-semibold rounded-[0.5rem] duration-300 hover:bg-primary hover:text-secondary"
           }
           aria-label={`Page ${e}`}
         >
@@ -69,7 +68,9 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
         </Link>
       ))}
       {!pages.includes(totalPages) && (
-        <span className={styles.link_current}>...</span>
+        <span className="cursor-default px-4 py-2 bg-ultra_light_primary text-light_primary font-semibold rounded-[0.5rem]">
+          ...
+        </span>
       )}
       {currentPage !== totalPages && (
         <>
@@ -77,7 +78,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
             href={{
               query: { page: currentPage + 1 },
             }}
-            className={styles.link_one_step}
+            className="px-4 py-2 bg-ultra_light_primary text-light_primary font-semibold rounded-[0.5rem] duration-300 hover:bg-primary hover:text-secondary"
             aria-label="Next page"
           >
             »
@@ -85,7 +86,7 @@ export const PaginationComponent: React.FC<PaginationProps> = ({
           {!pages.includes(totalPages) && (
             <Link
               href={{ query: { page: totalPages } }}
-              className={styles.link_text}
+              className="px-4 py-2 font-semibold text-light_primary rounded-[0.5rem] duration-300 hover:bg-primary hover:text-secondary"
               aria-label="Last page"
             >
               Last »

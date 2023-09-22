@@ -1,21 +1,23 @@
 import { ImagesEnum } from "@/common/constants";
 import { PublicUser } from "@/services/user/types";
-import styles from "./UserPreview.module.scss";
+
 import Image from "next/image";
 
 export const UserPreviewComponent: React.FC<PublicUser> = (props) => {
   return (
-    <div className={styles.container}>
+    <div className="max-w-full flex gap-4">
       <Image
         src={props.avatarUrl || ImagesEnum.user}
         alt="author_icon"
         width={50}
         height={50}
         priority
-        className={styles.avatar}
+        className="w-28 h-28 rounded-full border border-border"
       />
-      <div className={styles.info}>
-        <h3>{props.username}</h3>
+      <div className="p-4 flex flex-col overflow-auto gap-4">
+        <h3 className="text-4xl inline-size-full-overflow-wrap-break">
+          {props.username}
+        </h3>
         <div>
           {props.bio} Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Laudantium enim blanditiis perferendis, minima quidem iusto eos

@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SearchProps } from "./Search.types";
-import styles from "./Search.module.scss";
 import { SvgIcon } from "../SvgIcon";
 import { IconsEnum } from "@/common/constants";
 import { SearchResults } from "./SearchResults/SearchResults";
@@ -44,10 +43,13 @@ export const SearchComponent: React.FC<SearchProps> = () => {
   }, [debouncedInputValue]);
 
   return (
-    <div className={styles.container} ref={ref}>
-      <SvgIcon src={IconsEnum.search} size={25} />
+    <div
+      className="flex relative items-center bg-[#f9f9f9] px-2 rounded-[5rem]"
+      ref={ref}
+    >
+      <SvgIcon src={IconsEnum.search} size={25} className="stroke-border" />
       <input
-        className={styles.input}
+        className="bg-transparent py-[0.6rem] pr-5 pl-4 border-none outline-none"
         placeholder="Search"
         onChange={(e) => setInputValue(e.target.value)}
         ref={inpRef}

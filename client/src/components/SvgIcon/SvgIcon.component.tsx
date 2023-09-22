@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { ReactSVG } from "react-svg";
 import { SvgIconProps } from "./SvgIcon.types";
-import styles from "./SvgIcon.module.scss";
+import styles from "./SvgIcon.module.css";
 import Image from "next/image";
 
 export const SvgIconComponent: React.FC<SvgIconProps> = ({
