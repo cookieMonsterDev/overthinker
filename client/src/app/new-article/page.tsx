@@ -3,7 +3,7 @@ import { CreateArticleForm } from "@/components/Forms";
 
 const NewArticle = () => {
   return (
-    <main>
+    <main className="container py-8 flex flex-col gap-4">
       <CreateArticleForm />
     </main>
   );

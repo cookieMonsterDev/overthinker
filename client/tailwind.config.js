@@ -22,9 +22,23 @@ module.exports = {
         border: "rgb(204, 204, 204)",
       },
     },
+    fontFamily: {
+      'chomsky': ['Chomsky', 'sans-serif']
+    },
     container: {
       center: true,
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.inline-size-full-overflow-wrap-break': {
+          'inline-size': '100%',
+          'overflow-wrap': 'break-word',
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };

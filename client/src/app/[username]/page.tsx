@@ -3,7 +3,6 @@ import { Pagination } from "@/components/Pagination";
 import { findArtilcesService, findUserByUsernameService } from "@/services";
 import { Order } from "@/types/order.type";
 import { objectToQueryString } from "@/utils/objectToQueryString";
-import styles from "./ProfilePage.module.scss";
 import { Metadata } from "next";
 import { UserPreview } from "@/components/UserPreview";
 
@@ -38,11 +37,11 @@ const ProfilePage = async ({ params, searchParams }: ProfilePageProps) => {
   const articles = await findArtilcesService(query);
 
   return (
-    <main>
-      <section className={styles.user}>
+    <main className="container py-8 flex flex-col gap-4">
+      <section className="py-8">
         <UserPreview {...user} />
       </section>
-      <section className={styles.list}>
+      <section className="py-8 flex flex-col gap-4">
         {articles.data.map((e) => (
           <ArticleCard {...e} key={e._id} />
         ))}
@@ -51,7 +50,7 @@ const ProfilePage = async ({ params, searchParams }: ProfilePageProps) => {
           totalPages={articles.totalPages}
           leftFromCurrent={2}
           rightFromCurrent={2}
-          className={styles.pagination}
+          className="my-4"
         />
       </section>
     </main>

@@ -1,6 +1,5 @@
 import { MarkDownPreview } from "@/components/MarkDownPreview";
 import { findArticleByIdService } from "@/services";
-import styles from "./ArticlePage.module.scss";
 import { ArticleToolbar } from "@/components/ArticleToolbar";
 import { ArticleInfo } from "@/components/ArticleInfo";
 import { Metadata } from "next";
@@ -31,9 +30,9 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
   const article = await findArticleByIdService(params.articleId);
 
   return (
-    <main>
-      <article className={styles.article}>
-        <h1 className={styles.title} title={article.title}>
+    <main className="container py-8 flex flex-col gap-4">
+      <article className="flex flex-col max-w-full">
+        <h1 className="text-[3rem] my-8 w-full inline-size-full-overflow-wrap-break" title={article.title}>
           {article.title}
         </h1>
         <ArticleInfo
@@ -43,11 +42,11 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
           updatedAt={article.updatedAt}
         />
         <ArticleToolbar likes={999} comments={999} />
-        <MarkDownPreview source={article.content} className={styles.content} />
+        <MarkDownPreview source={article.content} className="my-6" />
         <ArticleToolbar
           likes={999}
           comments={999}
-          className={styles.bottom_toolbar}
+          className="mb-4"
         />
       </article>
     </main>

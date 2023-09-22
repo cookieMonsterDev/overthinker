@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
 import { Button } from "@/components/Button";
 import { TextInput } from "@/components/TextInput";
-import styles from "./CreateArticle.module.scss";
 import { useRouter } from "next/navigation";
 import { MarkDownEditor } from "@/components/MarkDownEditor";
 import { createArticleService } from "@/services/article";
@@ -46,7 +45,7 @@ export const CreateArticleForm = () => {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className={styles.container}>
+    <form onSubmit={formik.handleSubmit} className="flex min-h-[calc(100vh - 4rem - 4.3rem)] flex-col justify-start items-center gap-4">
       <TextInput
         type="text"
         id="title"
@@ -57,10 +56,10 @@ export const CreateArticleForm = () => {
         onChange={formik.handleChange}
         withAnimation={false}
       />
-      <div data-color-mode="light" className={styles.editor}>
+      <div data-color-mode="light" className="mt-2 w-full text-base">
         <MarkDownEditor
           value={formik.values.content}
-          onChange={handleChange}
+          onChangeEditor={handleChange}
           height={"calc(100vh - 4rem - 4.3rem - 13rem)"}
           error={formik.errors.content}
         />
@@ -68,7 +67,7 @@ export const CreateArticleForm = () => {
       <Button
         variant="success"
         type="submit"
-        className={styles.submit_button}
+        className="mt-8 w-40"
         isLoading={isLoading}
       >
         Publish

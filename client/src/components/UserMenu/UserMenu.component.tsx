@@ -60,7 +60,6 @@ export const UserMenuComponent = () => {
                   <span>Profile</span>
                 </Link>
                 <Link href="/library">
-                  {" "}
                   <SvgIcon src={IconsEnum.bookmarks} size={32} />
                   <span>Library</span>
                 </Link>

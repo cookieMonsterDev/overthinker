@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.scss";
+import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { ModalProvider } from "@/context/ModalProvider";
 import { NavBar } from "@/components/NavBar";

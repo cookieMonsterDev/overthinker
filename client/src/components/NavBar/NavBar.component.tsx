@@ -1,6 +1,5 @@
 "use client";
-import { NavBarProps } from "./NavBar.types";
-import styles from "./NavBar.module.scss";
+
 import Link from "next/link";
 import { Search } from "../Search";
 import { Button } from "../Button";
@@ -9,21 +8,25 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { UserMenu } from "../UserMenu";
 
-export const NavBarComponent: React.FC<NavBarProps> = () => {
+export const NavBarComponent = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="container h-18 px-6 flex justify-between border-b-border">
-      <div className={styles.subcontainer_left}>
-        <Link href="/" className={styles.title} aria-label="home page">
+    <nav className="container h-18 py-4 flex justify-between border-b-border">
+      <div className="flex items-center">
+        <Link
+          href="/"
+          className="font-chomsky text-4xl font-medium mr-4"
+          aria-label="home page"
+        >
           OverThinker
         </Link>
         <Search />
       </div>
-      <div className={styles.subcontainer_right}>
+      <div className="flex items-center gap-[0.6rem]">
         <Link
           href="/new-article"
-          className={styles.write_button_container}
+          className="flex items-center px-4"
           aria-label="new article page"
         >
           <Image
@@ -33,17 +36,17 @@ export const NavBarComponent: React.FC<NavBarProps> = () => {
             priority
             alt="write_icon"
           />
-          <span>Write</span>
+          <span className="ml-[0.3rem]">Write</span>
         </Link>
         {!session && (
           <>
             <Link href="/auth/register" aria-label="registration page">
-              <Button className={styles.button} variant="success">
+              <Button className="px-4 py-2" variant="success">
                 Sign up
               </Button>
             </Link>
             <Link href="/auth/login" aria-label="login page">
-              <Button className={styles.button} variant="text">
+              <Button className="px-4 py-2" variant="text">
                 Sign in
               </Button>
             </Link>

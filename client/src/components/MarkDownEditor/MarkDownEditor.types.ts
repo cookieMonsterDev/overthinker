@@ -1,8 +1,8 @@
-export interface MarkDownEditorProps {
+import { HTMLAttributes } from "react";
+
+export interface MarkDownEditorProps extends HTMLAttributes<HTMLDivElement> {
   value?: string;
   error?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  onChange: (value?: string | undefined) => void;
+  onChangeEditor: (value?: string | undefined) => void;
   height?: any;
 }

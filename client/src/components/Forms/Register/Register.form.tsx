@@ -3,7 +3,6 @@ import { useState } from "react";
 import { TextInput } from "../../TextInput";
 import { IconsEnum } from "@/common/constants";
 import { Button } from "@/components/Button";
-import styles from "./Register.module.scss";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
 import { useRouter } from "next/navigation";
@@ -18,7 +17,6 @@ export const RegisterForm = () => {
     icon: IconsEnum.visibilityoff,
   });
   const [isLoading, setLoading] = useState(false);
-  const { data: session, update } = useSession();
   const router = useRouter();
 
   const handlePasswordVisibility = () => {
@@ -44,12 +42,12 @@ export const RegisterForm = () => {
         const res = await registerUserServise(values);
 
         if (res) {
-          const { username, ...rest } = values; 
+          const { username, ...rest } = values;
           successToast("User is created!");
-          await signIn('credentials', {
+          await signIn("credentials", {
             ...rest,
-            redirect:false
-          })
+            redirect: false,
+          });
           router.push("/");
         }
       } catch (error) {
@@ -63,7 +61,10 @@ export const RegisterForm = () => {
   });
 
   return (
-    <form className={styles.form} onSubmit={formik.handleSubmit}>
+    <form
+      className="flex flex-col items-center gap-6 w-10/12"
+      onSubmit={formik.handleSubmit}
+    >
       <TextInput
         placeholder="Username"
         name="username"
@@ -92,7 +93,7 @@ export const RegisterForm = () => {
         error={formik.errors.password}
       />
       <Button
-        className={styles.register_button}
+        className="mt-12 min-w-[15rem] rounded-3xl text-xl"
         variant="default"
         type="submit"
         isLoading={isLoading}

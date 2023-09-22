@@ -1,5 +1,4 @@
 import { ArticleInfoProps } from "./ArticleInfo.types";
-import styles from "./ArticleInfo.module.scss";
 import Image from "next/image";
 import { ImagesEnum } from "@/common/constants";
 import Link from "next/link";
@@ -12,7 +11,7 @@ export const ArticleInfoComponent: React.FC<ArticleInfoProps> = ({
   updatedAt,
 }) => {
   return (
-    <div className={styles.container}>
+    <div className="flex py-[0.7rem] px-2">
       <Link href={`/${username}`}>
         <Image
           src={avatarUrl || ImagesEnum.user}
@@ -20,18 +19,18 @@ export const ArticleInfoComponent: React.FC<ArticleInfoProps> = ({
           width={32}
           height={32}
           priority
-          className={styles.avatar}
+          className="w-14 h-14 rounded-full border border-border"
         />
       </Link>
-      <div className={styles.info}>
+      <div className="ml-4 flex justify-center flex-col gap-[0.3rem] overflow-auto">
         <Link
           href={`/${username}`}
-          className={styles.username}
+          className="font-bold inline-size-full-overflow-wrap-break duration-300 hover:underline"
           aria-label={`${username} page`}
         >
           @{username}
         </Link>
-        <div className={styles.date}>
+        <div className="text-sm font-normal text-light_primary">
           <span>
             {`Published in: ${dateTimeFormater(new Date(createdAt))}`}
           </span>

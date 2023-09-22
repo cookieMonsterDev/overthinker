@@ -3,7 +3,6 @@ import { useState } from "react";
 import { TextInput } from "../../TextInput";
 import { IconsEnum } from "@/common/constants";
 import { Button } from "@/components/Button";
-import styles from "./Login.module.scss";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./validationSchema";
 import { signIn, useSession } from "next-auth/react";
@@ -47,8 +46,8 @@ export const LoginForm = () => {
         }
 
         if (!res?.error) {
-          update()
-          router.push("/",);
+          update();
+          router.push("/");
         }
       } catch (error) {
         console.error(error);
@@ -59,7 +58,10 @@ export const LoginForm = () => {
   });
 
   return (
-    <form className={styles.form} onSubmit={formik.handleSubmit}>
+    <form
+      className="flex flex-col items-center gap-6 w-10/12"
+      onSubmit={formik.handleSubmit}
+    >
       <TextInput
         placeholder="Email"
         name="email"
@@ -80,7 +82,7 @@ export const LoginForm = () => {
         error={formik.errors.password}
       />
       <Button
-        className={styles.login_button}
+        className="mt-12 min-w-[15rem] rounded-3xl text-xl"
         variant="default"
         type="submit"
         isLoading={isLoading}
