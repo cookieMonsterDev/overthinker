@@ -6,7 +6,6 @@ import { Model } from 'mongoose';
 import { privateUser, publicUser } from 'src/common/selectors';
 import { UserQueriesDto } from './dto/queries-user.dto';
 import { Pagination } from 'src/common/types';
-import { query } from 'express';
 
 @Injectable()
 export class UsersService {
