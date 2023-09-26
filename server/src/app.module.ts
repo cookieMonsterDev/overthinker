@@ -4,6 +4,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { UsersModule } from './core/users/users.module';
 import { ArticlesModule } from './core/articles/articles.module';
 import { SearchModule } from './core/search/search.module';
+import { CommentsModule } from './core/comments/comments.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { SearchModule } from './core/search/search.module';
     UsersModule,
     ArticlesModule,
     SearchModule,
+    CommentsModule,
   ],
 })
 export class AppModule {}

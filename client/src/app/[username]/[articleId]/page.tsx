@@ -4,6 +4,7 @@ import { ArticleToolbar } from "@/components/ArticleToolbar";
 import { ArticleInfo } from "@/components/ArticleInfo";
 import { Metadata } from "next";
 import { dateTimeFormater } from "@/utils/dateTimeFormater";
+import Chat from "@/components/Chat";
 
 interface ArticlePageProps {
   params: { articleId: string; username: string };
@@ -49,6 +50,7 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
           className="mb-4"
         />
       </article>
+      <Chat />
     </main>
   );
 };
