@@ -5,6 +5,7 @@ import { Comment } from './entities/comment.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { publicUser } from 'src/common/selectors';
+import { CommentQueriesDto } from './dto/queries-comment.dto';
 
 @Injectable()
 export class CommentsService {
@@ -18,14 +19,46 @@ export class CommentsService {
         ...createCommentDto,
       });
 
-      return newComment;
+      const comment = await this.findOneById(newComment._id);
+
+      return comment;
     } catch (error) {
       throw error;
     }
   }
 
-  findAll() {
-    return `This action returns all comments`;
+  async findAll(queries: CommentQueriesDto) {
+    try {
+      const query = {};
+
+      if (queries.author) {
+        query['author'] = queries.author;
+      }
+
+      if (queries.article) {
+        query['article'] = queries.article;
+      }
+
+      const comments = await this.commentModel
+        .find(query)
+        .populate('author', publicUser)
+        .sort({
+          createdAt: queries.orderByCreatedAt,
+          updatedAt: queries.orderByUpdatedAt,
+        })
+        .limit(queries.limit * 1)
+        .skip((queries.page - 1) * queries.limit);
+
+      const totalPages = await this.commentModel.countDocuments(query);
+
+      return {
+        totalPages: Math.ceil(totalPages / queries.limit),
+        currentPage: queries.page,
+        data: comments,
+      };
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findOneById(id: string) {

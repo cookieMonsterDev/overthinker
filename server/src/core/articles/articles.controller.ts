@@ -14,9 +14,9 @@ import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { JwtGuard } from '../auth/guards';
-import { AuthorOrAdminGuard } from 'src/common/guards/author-or-admin.guard';
 import { UserID } from 'src/common/decorators';
 import { ArticleQueriesDto } from './dto/queries-article.dto';
+import { ArticleOrAdminGuard } from 'src/common/guards';
 
 @Controller('articles')
 export class ArticlesController {
@@ -38,7 +38,7 @@ export class ArticlesController {
     return this.articlesService.findOneById(articleId);
   }
 
-  @UseGuards(JwtGuard, AuthorOrAdminGuard)
+  @UseGuards(JwtGuard, ArticleOrAdminGuard)
   @Put(':articleId')
   update(
     @Param('articleId') articleId: string,
@@ -47,7 +47,7 @@ export class ArticlesController {
     return this.articlesService.updateOneById(articleId, updateArticleDto);
   }
 
-  @UseGuards(JwtGuard, AuthorOrAdminGuard)
+  @UseGuards(JwtGuard, ArticleOrAdminGuard)
   @Delete(':articleId')
   @HttpCode(204)
   remove(@Param('articleId') articleId: string) {
