@@ -2,8 +2,9 @@ import { ChangeEvent, useState } from "react";
 import Image from "next/image";
 import { AddCommentProps } from "./Comments.types";
 import { Button } from "../Button";
+import { ImagesEnum } from "@/common/constants";
 
-const AddComment: React.FC<AddCommentProps> = ({ avatar }) => {
+const AddComment: React.FC<AddCommentProps> = ({ avatarUrl }) => {
   const [text, setText] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -23,12 +24,12 @@ const AddComment: React.FC<AddCommentProps> = ({ avatar }) => {
   return (
     <div className="flex items-start">
       <Image
-        src={avatar}
+        src={avatarUrl || ImagesEnum.user}
         width={40}
         height={40}
         priority
         alt="write_icon"
-        className="rounded-full border border-border mr-6"
+        className="rounded-full border border-border mr-4"
       />
       <div className="flex flex-col w-full">
         <textarea
