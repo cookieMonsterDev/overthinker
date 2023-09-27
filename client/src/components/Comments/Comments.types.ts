@@ -2,6 +2,7 @@ import { PublicUser } from "@/services/user/types";
 
 export interface CommentsProps {
   comments: CommentProps[] | null;
+  articleId: string;
 }
 
 export interface CommentProps {
@@ -12,5 +13,8 @@ export interface CommentProps {
   updatedAt: Date;
 }
 
-export interface AddCommentProps
-  extends Pick<PublicUser, "avatarUrl" | "_id"> {}
+export interface AddCommentProps {
+  authorId: string;
+  avatarUrl: string | null;
+  articleId: string;
+}

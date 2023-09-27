@@ -126,7 +126,7 @@ const ArticlePage = async ({ params }: ArticlePageProps) => {
         <MarkDownPreview source={article.content} className="my-6" />
         <ArticleToolbar likes={999} comments={999} className="mb-4" />
       </article>
-      <Comments comments={data} />
+      <Comments comments={data} articleId={article._id} />
     </main>
   );
 };

@@ -1,11 +1,18 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
 import { AddCommentProps } from "./Comments.types";
 import { Button } from "../Button";
 import { ImagesEnum } from "@/common/constants";
+import useSocket from "@/hooks/useSocket";
+import { ManagerOptions } from "socket.io-client";
 
-const AddComment: React.FC<AddCommentProps> = ({ avatarUrl }) => {
+const AddComment: React.FC<AddCommentProps> = ({
+  avatarUrl,
+  articleId,
+  authorId,
+}) => {
   const [text, setText] = useState("");
+  const socket = useSocket({url: "http://localhost:81", rooms: articleId});
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -16,10 +23,19 @@ const AddComment: React.FC<AddCommentProps> = ({ avatarUrl }) => {
 
   const handleComment = () => {
     if (!text) return;
-    console.log(text);
+
+    socket?.emit("message", { author: authorId, article: articleId, text });
 
     setText("");
   };
+
+  useEffect(() => {
+    socket?.on("message", (e) => console.log(e));
+
+    return () => {
+      socket?.off("message", (e) => console.log(e));
+    };
+  }, [socket]);
 
   return (
     <div className="flex items-start">

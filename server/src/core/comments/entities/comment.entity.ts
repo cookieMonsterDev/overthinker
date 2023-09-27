@@ -9,6 +9,7 @@ export class Comment extends Document {
     type: SchemaTypes.Types.ObjectId,
     ref: User.name,
     required: true,
+    unique: false,
   })
   author: User;
 
@@ -16,6 +17,7 @@ export class Comment extends Document {
     type: SchemaTypes.Types.ObjectId,
     ref: Article.name,
     required: true,
+    unique: false,
   })
   article: Article;
 

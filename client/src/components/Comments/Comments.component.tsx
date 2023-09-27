@@ -8,7 +8,10 @@ import AddComment from "./AddComment.component";
 import { CommentsProps } from "./Comments.types";
 import { CommentComponent } from "./Comment.component";
 
-export const CommentsComponent: React.FC<CommentsProps> = ({ comments }) => {
+export const CommentsComponent: React.FC<CommentsProps> = ({
+  comments,
+  articleId,
+}) => {
   const { data: session } = useSession();
 
   return (
@@ -29,7 +32,11 @@ export const CommentsComponent: React.FC<CommentsProps> = ({ comments }) => {
           </p>
         </Link>
       ) : (
-        <AddComment avatarUrl={session.user.avatarUrl} _id={""} />
+        <AddComment
+          avatarUrl={session.user.avatarUrl}
+          authorId={session.user._id}
+          articleId={articleId}
+        />
       )}
       {comments ? (
         <ul className="flex flex-col list-none gap-8">
