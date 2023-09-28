@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className="flex flex-col">
         <AuthProvider>
           <ModalProvider>
             <ToastNotificationProvider>

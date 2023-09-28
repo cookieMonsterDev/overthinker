@@ -37,7 +37,7 @@ const ProfilePage = async ({ params, searchParams }: ProfilePageProps) => {
   const articles = await findArtilcesService(query);
 
   return (
-    <main className="container py-8 flex flex-col gap-4">
+    <main className="container py-8 flex flex-col gap-4 flex-1">
       <section className="py-8">
         <UserPreview {...user} />
       </section>

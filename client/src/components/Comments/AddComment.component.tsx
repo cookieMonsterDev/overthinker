@@ -10,9 +10,9 @@ const AddComment: React.FC<AddCommentProps> = ({
   avatarUrl,
   articleId,
   authorId,
+  socket
 }) => {
   const [text, setText] = useState("");
-  const socket = useSocket({url: "http://localhost:81", rooms: articleId});
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -28,14 +28,6 @@ const AddComment: React.FC<AddCommentProps> = ({
 
     setText("");
   };
-
-  useEffect(() => {
-    socket?.on("message", (e) => console.log(e));
-
-    return () => {
-      socket?.off("message", (e) => console.log(e));
-    };
-  }, [socket]);
 
   return (
     <div className="flex items-start">

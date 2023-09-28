@@ -1,22 +1,22 @@
 import React from "react";
-import { CommentProps } from "./Comments.types";
 import { ImagesEnum } from "@/common/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { dateTimeFormater } from "@/utils/dateTimeFormater";
+import { CommentResponse } from "@/services/comments/types";
 
-export const CommentComponent: React.FC<CommentProps> = ({
+export const CommentComponent: React.FC<CommentResponse> = ({
   _id,
-  user,
+  author,
   text,
   createdAt,
   updatedAt,
 }) => {
   return (
     <li className="flex items-start">
-      <Link href={`/${user.username}`}>
+      <Link href={`/${author.username}`}>
         <Image
-          src={user.avatarUrl || ImagesEnum.user}
+          src={author.avatarUrl || ImagesEnum.user}
           width={40}
           height={40}
           priority
@@ -27,10 +27,10 @@ export const CommentComponent: React.FC<CommentProps> = ({
       <div className="flex flex-col w-full">
         <div className="flex justify-start gap-2">
           <Link
-            href={`/${user.username}`}
+            href={`/${author.username}`}
             className="font-bold duration-300 hover:underline"
           >
-            @{user.username}
+            @{author.username}
           </Link>
           <span className="text-light_primary">
             {dateTimeFormater(new Date(createdAt))}

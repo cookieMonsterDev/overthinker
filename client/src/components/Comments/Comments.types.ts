@@ -1,20 +1,15 @@
-import { PublicUser } from "@/services/user/types";
+import { CommentResponse } from "@/services/comments/types";
+import { Pagination } from "@/types/pagination.type";
+import { Socket } from "socket.io-client";
 
 export interface CommentsProps {
-  comments: CommentProps[] | null;
+  comments:  Pagination<CommentResponse>;
   articleId: string;
-}
-
-export interface CommentProps {
-  _id: string;
-  user: PublicUser;
-  text: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 export interface AddCommentProps {
   authorId: string;
   avatarUrl: string | null;
   articleId: string;
+  socket: Socket | null
 }

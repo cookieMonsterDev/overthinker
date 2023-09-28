@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: HomePageProps) {
   const articles = await findArtilcesService(query);
 
   return (
-    <main className="container py-8 flex flex-col gap-4 min-h-[calc(100vh - )]">
+    <main className="container py-8 flex flex-col gap-4 flex-1">
       <section className="flex flex-col gap-4">
         {articles.data.map((e) => (
           <ArticleCard {...e} key={e._id} />
